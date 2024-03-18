@@ -1,4 +1,4 @@
-import { useState, useRef, memo } from "react";
+import { useState, useRef } from "react";
 import "./styles/app.scss";
 import Song from "./components/Song";
 import Player from "./components/Player";
@@ -8,11 +8,14 @@ import Nav from "./components/Nav";
 import data from "./data";
 
 function App() {
+    // console.log("Re-render from App.js")
+
     const [songs, setSongs] = useState(data());
     const [currentSong, setCurrentSong] = useState(songs[0]);
     const [isPlaying, setIsPlaying] = useState(false);
     const [libraryStatus, setLibraryStatus] = useState(false);
     const [listStatus, setListStatus] = useState(false)
+    const [listQueue, setListQueue] = useState([]);
     const [songInfo, setSongInfo] = useState({
         currentTime: 0,
         duration: 0,
@@ -89,14 +92,20 @@ function App() {
                 audioRef={audioRef}
                 songs={songs}
                 setSongs={setSongs}
+                listQueue={listQueue}
+                setListQueue={setListQueue}
+                typeOfButton={"faPlus"}
             />
             <List
                 listStatus={listStatus}
                 isPlaying={isPlaying}
+                currentSong={currentSong}
                 setCurrentSong={setCurrentSong}
                 audioRef={audioRef}
                 songs={songs}
                 setSongs={setSongs}
+                listQueue={listQueue}
+                setListQueue={setListQueue}
             />
             <audio
                 onTimeUpdate={timeUpdateHandler}

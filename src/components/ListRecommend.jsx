@@ -7,6 +7,7 @@ export default function ListRecommend({
     audioRef,
     isPlaying,
 }) {
+    // console.log("Re-render from ListRecommend.js")
     return (
         <>
             <h2>Recommend</h2>

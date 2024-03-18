@@ -7,7 +7,11 @@ export default function Library({
     audioRef,
     isPlaying,
     libraryStatus,
+    listQueue,
+    setListQueue,
+    typeOfButton
 }) {
+    // console.log("Re-render from Library.jsx")
     return (
         <div className={`library ${libraryStatus ? "active_library" : ""}`}>
             <h2>Library</h2>
@@ -22,6 +26,9 @@ export default function Library({
                         key={song.id}
                         isPlaying={isPlaying}
                         audioRef={audioRef}
+                        listQueue={listQueue}
+                        setListQueue={setListQueue}
+                        typeOfButton={typeOfButton}
                     />
                 ))}
             </div>

@@ -20,6 +20,8 @@ export default function Player({
     setCurrentSong,
     setSongs,
 }) {
+    // console.log("Re-render from Player.jsx")
+    
     const activeLibraryHandler = (nextPrev) => {
         const activeSong = songs.map((song) => {
             if (song.id === nextPrev.id) {

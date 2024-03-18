@@ -8,6 +8,7 @@ export default function Nav({
     setListStatus,
     darkThemeHandler,
 }) {
+    // console.log("Re-render from Nav.jsx")
     return (
         <nav>
             <h1>Waves</h1>

@@ -3,6 +3,8 @@ export default function Song({ currentSong, songInfo }) {
         transform: `rotate(${songInfo.currentTime * 10}deg)`,
     };
 
+    // console.log("Re-render from Song.jsx")
+
     return (
         <div className="song_container">
             <img
