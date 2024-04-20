@@ -39,17 +39,30 @@ function App() {
         });
     };
 
+    const activeLibraryHandler = (nextPrev) => {
+        const activeSong = songs.map((song) => {
+            if (song.id === nextPrev.id) {
+                return { ...song, active: true };
+            } else {
+                return { ...song, active: false };
+            }
+        });
+        setSongs(activeSong);
+    };
+
     const songEndHandler = async () => {
         if (listQueue.length !== 0) {
             let currentIndex = listQueue.findIndex(
                 (lq) => lq.id === currentSong.id
             );
             await setCurrentSong(listQueue[(currentIndex + 1) % listQueue.length]);
+            activeLibraryHandler(listQueue[(currentIndex + 1) % listQueue.length]);
         } else {
             let currentIndex = songs.findIndex(
                 (song) => song.id === currentSong.id
             );
             await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+            activeLibraryHandler(songs[(currentIndex + 1) % songs.length]);
         }
 
         if (isPlaying) audioRef.current.play();
