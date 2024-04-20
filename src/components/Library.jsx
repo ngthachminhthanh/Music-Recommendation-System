@@ -11,7 +11,6 @@ export default function Library({
     setListQueue,
     typeOfButton
 }) {
-    // console.log("Re-render from Library.jsx")
     return (
         <div className={`library ${libraryStatus ? "active_library" : ""}`}>
             <h2>Library</h2>

@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./styles/app.scss";
 import Song from "./components/Song";
 import Player from "./components/Player";
@@ -8,8 +8,6 @@ import Nav from "./components/Nav";
 import data from "./data";
 
 function App() {
-    // console.log("Re-render from App.js")
-
     const [songs, setSongs] = useState(data());
     const [currentSong, setCurrentSong] = useState(songs[0]);
     const [isPlaying, setIsPlaying] = useState(false);
@@ -42,10 +40,18 @@ function App() {
     };
 
     const songEndHandler = async () => {
-        let currentIndex = songs.findIndex(
-            (song) => song.id === currentSong.id
-        );
-        await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+        if (listQueue.length !== 0) {
+            let currentIndex = listQueue.findIndex(
+                (lq) => lq.id === currentSong.id
+            );
+            await setCurrentSong(listQueue[(currentIndex + 1) % listQueue.length]);
+        } else {
+            let currentIndex = songs.findIndex(
+                (song) => song.id === currentSong.id
+            );
+            await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+        }
+
         if (isPlaying) audioRef.current.play();
     };
 
@@ -106,6 +112,7 @@ function App() {
                 setSongs={setSongs}
                 listQueue={listQueue}
                 setListQueue={setListQueue}
+                typeOfButton={"faPlus"}
             />
             <audio
                 onTimeUpdate={timeUpdateHandler}

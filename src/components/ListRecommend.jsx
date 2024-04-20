@@ -3,11 +3,15 @@ import LibrarySong from "./LibrarySong";
 export default function ListRecommend({
     songs,
     setSongs,
+    currentSong,
     setCurrentSong,
     audioRef,
     isPlaying,
+    listStatus,
+    listQueue,
+    setListQueue,
+    typeOfButton,
 }) {
-    // console.log("Re-render from ListRecommend.js")
     return (
         <>
             <h2>Recommend</h2>
@@ -22,6 +26,9 @@ export default function ListRecommend({
                         key={song.id}
                         isPlaying={isPlaying}
                         audioRef={audioRef}
+                        typeOfButton={typeOfButton}
+                        listQueue={listQueue}
+                        setListQueue={setListQueue}
                     />
                 ))}
             </div>

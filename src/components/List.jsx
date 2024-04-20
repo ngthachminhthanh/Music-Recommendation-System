@@ -10,9 +10,9 @@ export default function List({
     isPlaying,
     listStatus,
     listQueue,
-    setListQueue
+    setListQueue,
+    typeOfButton,
 }) {
-    // console.log("Re-render from List.jsx")
     return (
         <div className={`list ${listStatus ? "active_list" : ""}`}>
             <ListQueue
@@ -28,9 +28,13 @@ export default function List({
             <ListRecommend
                 songs={songs}
                 setSongs={setSongs}
+                currentSong={currentSong}
                 setCurrentSong={setCurrentSong}
                 audioRef={audioRef}
                 isPlaying={isPlaying}
+                listQueue={listQueue}
+                setListQueue={setListQueue}
+                typeOfButton={typeOfButton}
             />
         </div>
     );

@@ -10,13 +10,16 @@ export default function ListQueue({
     listQueue,
     setListQueue
 }) {
-    // console.log("Re-render from ListQueue.js")
     return (
         <>
             <h2>Queue</h2>
-            <div className="list_songs">
+            <div className="list_songs" style={ listQueue.length == 0 ? {
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+            } : null }>
                 {
-                    listQueue.map((song) => (
+                    listQueue.length !== 0 ? listQueue.map((song) => (
                     <LibrarySong
                         listQueue={listQueue}
                         setListQueue={setListQueue}
@@ -31,7 +34,14 @@ export default function ListQueue({
                         audioRef={audioRef}
                         typeOfButton={"faMinus"}
                     />
-                ))}
+                    )) : (
+                        <p style={{
+                            color: 'gray'
+                        }}>
+                            You haven't add any songs yet to queue
+                        </p>
+                    )
+                }
             </div>
         </>
     );
