@@ -5,37 +5,37 @@ function chillHop() {
         {
             name: "Kill Bill", 
             cover:
-                "https://chillhop.com/wp-content/uploads/2020/07/ff35dede32321a8aa0953809812941bcf8a6bd35-1024x1024.jpg",
+                "https://i1.sndcdn.com/artworks-L1qZHQcUl4fpjOya-gpaSLQ-t500x500.jpg",
             artist: "SZA",
             audio: "https://github.com/q113pt/MusicLibrary/blob/main/SZA%20-%20Kill%20Bill.mp3?raw=true",
-            color: ["#CD607D", "#c94043"],
+            color: ["#0076d1", "#180070"],
             id: uuidv4(),
             active: true,
         },
         {
             name: "BLUE",
             cover:
-                "https://images.genius.com/5e7bf410789d01a90983b2641b88e5bd.1000x1000x1.png",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Hit%20me%20hard%20and%20soft%20(Billie).png?raw=true",
             artist: "Billie Eilish",
             audio: "https://github.com/q113pt/MusicLibrary/blob/main/Billie%20Eilish%20-%20BLUE.mp3?raw=true",
-            color: ["#205950", "#2ab3bf"],
+            color: ["#180070", "#00081f"],
             id: uuidv4(),
             active: false,
         },
         {
             name: "Blank Space",
             cover:
-                "https://chillhop.com/wp-content/uploads/2020/07/ef95e219a44869318b7806e9f0f794a1f9c451e4-1024x1024.jpg",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/1989%20(%20Blank%20Space%20).png?raw=true",
             artist: "Taylor Swift",
             audio: "https://github.com/q113pt/MusicLibrary/blob/main/Taylor%20Swift%20-%20Blank%20Space.mp3?raw=true",
-            color: ["#EF8EA9", "#ab417f"],
+            color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
         },
         {
             name: "Blinding Lights",
             cover:
-                "https://chillhop.com/wp-content/uploads/2020/07/ff35dede32321a8aa0953809812941bcf8a6bd35-1024x1024.jpg",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/After%20Hours%20The%20Weeknd.jpg?raw=true",
             artist: "The Weekend",
             audio: "https://github.com/q113pt/MusicLibrary/blob/main/The%20Weeknd%20-%20Blinding%20Lights.mp3?raw=true",
             color: ["#CD607D", "#c94043"],
@@ -45,7 +45,7 @@ function chillHop() {
         {
             name: "Ticking",
             cover:
-                "https://chillhop.com/wp-content/uploads/2020/09/0255e8b8c74c90d4a27c594b3452b2daafae608d-1024x1024.jpg",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Zach%20Bryan.png?raw=true",
             artist: "Zach Bryan",
             audio: "https://github.com/q113pt/MusicLibrary/blob/main/Zach%20Bryan%20-%20Ticking.mp3?raw=true",
             color: ["#205950", "#2ab3bf"],
@@ -55,27 +55,27 @@ function chillHop() {
         {
             name: "CHIHIRO",
             cover:
-                "https://i1.sndcdn.com/avatars-g5aRb8wklpfCUKIc-emVYkg-t500x500.jpg",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Hit%20me%20hard%20and%20soft%20(Billie).png?raw=true",
             artist: "Billie Eilish",
             audio: "https://github.com/q113pt/MusicLibrary/blob/main/Billie%20Eilish%20-%20CHIHIRO.mp3?raw=true",
-            color: ["#EF8EA9", "#ab417f"],
+            color: ["#180070", "#00081f"],
             id: uuidv4(),
             active: false,
         },
         {
             name: "Love Story",
             cover:
-                "https://i1.sndcdn.com/avatars-g5aRb8wklpfCUKIc-emVYkg-t500x500.jpg",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Fearless%20(%20Love%20Story%20).png?raw=true",
             artist: "Taylor Swift",
             audio: "https://github.com/q113pt/MusicLibrary/blob/main/Taylor%20Swift%20-%20Love%20Story.mp3?raw=true",
-            color: ["#EF8EA9", "#ab417f"],
+            color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
         },
         {
             name: "Save Your Tears",
             cover:
-                "https://i1.sndcdn.com/avatars-g5aRb8wklpfCUKIc-emVYkg-t500x500.jpg",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/After%20Hours%20The%20Weeknd.jpg?raw=true",
             artist: "The Weekend",
             audio: "https://github.com/q113pt/MusicLibrary/blob/main/The%20Weeknd%20-%20Save%20Your%20Tears.mp3?raw=true",
             color: ["#EF8EA9", "#ab417f"],
@@ -85,20 +85,20 @@ function chillHop() {
         {
             name: "SKINNY",
             cover:
-                "https://i1.sndcdn.com/avatars-g5aRb8wklpfCUKIc-emVYkg-t500x500.jpg",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Hit%20me%20hard%20and%20soft%20(Billie).png?raw=true",
             artist: "Billie Eilish",
             audio: "https://github.com/q113pt/MusicLibrary/blob/main/Billie%20Eilish%20-%20SKINNY.mp3?raw=true",
-            color: ["#EF8EA9", "#ab417f"],
+            color: ["#180070", "#00081f"],
             id: uuidv4(),
             active: false,
         },
         {
             name: "Peter",
             cover:
-                "https://i1.sndcdn.com/avatars-g5aRb8wklpfCUKIc-emVYkg-t500x500.jpg",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
             artist: "Taylor Swift",
             audio: "https://github.com/q113pt/MusicLibrary/blob/main/Taylor%20Swift%20-%20Peter.mp3?raw=true",
-            color: ["#EF8EA9", "#ab417f"],
+            color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
         },
