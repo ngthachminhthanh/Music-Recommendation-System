@@ -11,6 +11,8 @@ export default function List({
     listStatus,
     listQueue,
     setListQueue,
+    listRecommend,
+    setListRecommend,
     typeOfButton,
 }) {
     return (
@@ -24,6 +26,8 @@ export default function List({
                 isPlaying={isPlaying}
                 listQueue={listQueue}
                 setListQueue={setListQueue}
+                listRecommend={listRecommend}
+                setListRecommend={setListRecommend}
             />
             <ListRecommend
                 songs={songs}
@@ -34,6 +38,8 @@ export default function List({
                 isPlaying={isPlaying}
                 listQueue={listQueue}
                 setListQueue={setListQueue}
+                listRecommend={listRecommend}
+                setListRecommend={setListRecommend}
                 typeOfButton={typeOfButton}
             />
         </div>

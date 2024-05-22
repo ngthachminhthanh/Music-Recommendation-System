@@ -8,7 +8,9 @@ export default function ListQueue({
     audioRef,
     isPlaying,
     listQueue,
-    setListQueue
+    setListQueue,
+    listRecommend,
+    setListRecommend
 }) {
     return (
         <>

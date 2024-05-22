@@ -12,8 +12,9 @@ function App() {
     const [currentSong, setCurrentSong] = useState(songs[0]);
     const [isPlaying, setIsPlaying] = useState(false);
     const [libraryStatus, setLibraryStatus] = useState(false);
-    const [listStatus, setListStatus] = useState(false)
+    const [listStatus, setListStatus] = useState(false);
     const [listQueue, setListQueue] = useState([]);
+    const [listRecommend, setListRecommend] = useState([]);
     const [songInfo, setSongInfo] = useState({
         currentTime: 0,
         duration: 0,
@@ -125,6 +126,8 @@ function App() {
                 setSongs={setSongs}
                 listQueue={listQueue}
                 setListQueue={setListQueue}
+                listRecommend={listRecommend}
+                setListRecommend={setListRecommend}
                 typeOfButton={"faPlus"}
             />
             <audio
