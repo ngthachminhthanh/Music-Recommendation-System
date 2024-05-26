@@ -1,73 +1,29 @@
 import LibrarySong from "./LibrarySong";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function ListRecommend({
-    songs,
     setSongs,
     currentSong,
     setCurrentSong,
     audioRef,
     isPlaying,
-    listStatus,
     listQueue,
     setListQueue,
-    listRecommend,
-    setListRecommend,
     typeOfButton,
 }) {
-    // Hàm tính cosine similarity
-    function cosineSimilarity(vecA, vecB) {
-        const dotProduct = vecA.reduce((sum, a, idx) => sum + a * vecB[idx], 0);
-        const magnitudeA = Math.sqrt(vecA.reduce((sum, a) => sum + a * a, 0));
-        const magnitudeB = Math.sqrt(vecB.reduce((sum, b) => sum + b * b, 0));
-        return dotProduct / (magnitudeA * magnitudeB);
+    const [recommendedSongs, setRecommendedSongs] = useState([]);
+
+    // Hàm tính Jaccard similarity
+    function jaccardSimilarity(setA, setB) {
+        const intersection = new Set([...setA].filter(x => setB.has(x)));
+        const union = new Set([...setA, ...setB]);
+        return intersection.size / union.size;
     }
 
-    // Hàm tính TF-IDF
-    function computeTFIDF(songs) {
-        const termFrequency = {};
-        const documentFrequency = {};
-        const numDocuments = songs.length;
 
-        // Tính TF và DF
-        songs.forEach(song => {
-            const terms = song.lyrics.split(/\W+/).filter(Boolean);
-            const tf = {};
-            terms.forEach(term => {
-                if (!tf[term]) tf[term] = 0;
-                tf[term]++;
-            });
-            termFrequency[song.name] = tf;
-
-            const uniqueTerms = new Set(terms);
-            uniqueTerms.forEach(term => {
-                if (!documentFrequency[term]) documentFrequency[term] = 0;
-                documentFrequency[term]++;
-            });
-        });
-
-        console.log(termFrequency);
-        console.log(documentFrequency);
-
-        // Tính TF-IDF
-        const tfidfVectors = songs.map(song => {
-            const tf = termFrequency[song.name];
-            const tfidf = {};
-            for (let term in tf) {
-                tfidf[term] = (tf[term] / Object.keys(tf).length) * Math.log(numDocuments / (1 + documentFrequency[term]));
-            }
-
-            console.log(tfidf)
-
-            return tfidf;
-        });
-
-        return tfidfVectors;
-    }
-
-    // Hàm chuyển đổi TF-IDF thành vector
-    function convertToVector(tfidf, vocabulary) {
-        return vocabulary.map(term => tfidf[term] || 0);
+    // Hàm tạo tập hợp từ các thuộc tính của bài hát
+    function createAttributeSet(song) {
+        return new Set(['genre', 'artist', 'album'].map(attr => song[attr]));
     }
 
     // Lớp hệ thống gợi ý
@@ -79,18 +35,23 @@ export default function ListRecommend({
         updateData(songs) {
             this.songs = songs;
 
-            // Tính toán TF-IDF cho mỗi bài hát
-            const tfidfVectors = computeTFIDF(songs);
-            const vocabulary = Array.from(new Set(songs.flatMap(song => song.lyrics.split(/\W+/).filter(Boolean))));
-            this.tfidfVectors = tfidfVectors.map(tfidf => convertToVector(tfidf, vocabulary));
+            // Tính toán tập hợp cho mỗi bài hát
+            this.attributeSets = songs.map(createAttributeSet);
 
-            // Tính cosine similarity giữa các bài hát
-            this.cosineSimMatrix = this.tfidfVectors.map(vecA => this.tfidfVectors.map(vecB => cosineSimilarity(vecA, vecB)));
+            // Tính Jaccard similarity giữa các bài hát
+            this.jaccardSimMatrix = this.attributeSets.map((setA, i) =>
+                this.attributeSets.map((setB, j) => {
+                    if (i === j) return 0; // Nếu index của setA và setB giống nhau, trả về 0
+                    const sim = jaccardSimilarity(setA, setB);
+                    console.log(`Jaccard similarity between ${this.songs[i].name} and ${this.songs[j].name}: ${sim}`);
+                    return sim;
+                })
+            );
         }
 
         getAllRecommendations() {
             return this.songs.map((song, index) => {
-                const simScores = this.cosineSimMatrix[index]
+                const simScores = this.jaccardSimMatrix[index]
                     .map((score, idx) => ({ idx, score }))
                     .sort((a, b) => b.score - a.score)
                     .filter(pair => pair.idx !== index)
@@ -102,47 +63,70 @@ export default function ListRecommend({
                 };
             });
         }
+
+        getRecommendationsForCurrentSong(currentSongId) {
+            const songIndex = this.songs.findIndex(song => song.id === currentSongId);
+            if (songIndex === -1) return [];
+
+            const simScores = this.jaccardSimMatrix[songIndex]
+                .map((score, idx) => ({ idx, score }))
+                .sort((a, b) => b.score - a.score)
+                .filter(pair => pair.idx !== songIndex)
+                .map(pair => this.songs[pair.idx]);
+
+            return simScores.slice(0, 3); // Lấy 3 bài hát gợi ý tương tự nhất
+        }
     }
 
-    let allRecommendedSongs=[];
-    
     // Khởi tạo hệ thống gợi ý
-    if (listQueue.length !== 0) {
-        const recommender = new SongRecommender(listQueue);
-        // Gợi ý các bài hát dựa trên tất cả các bài hát trong danh sách
-        allRecommendedSongs = recommender.getAllRecommendations();
-        console.log(allRecommendedSongs);
-    }
+    useEffect(() => {
+        if (listQueue.length > 0) {
+            const recommender = new SongRecommender(listQueue);
+            let recommendations = [];
+
+            if (currentSong) {
+                recommendations = recommender.getRecommendationsForCurrentSong(currentSong.id);
+            } else {
+                // Nếu không có currentSong, lấy gợi ý từ bài hát đầu tiên trong hàng đợi
+                recommendations = recommender.getRecommendationsForCurrentSong(listQueue[0].id);
+            }
+
+            console.log("All Recommended Songs: ", recommender.getAllRecommendations());
+            console.log("Current Song Recommendations: ", recommendations);
+            setRecommendedSongs(recommendations);
+        }
+    }, [listQueue, currentSong]);
 
     return (
         <>
             <h2>Recommend</h2>
-            <div className="list_songs" style={ allRecommendedSongs.length == 0 ? {
+            <div className="list_songs" style={recommendedSongs.length === 0 ? {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center'
-            } : null }>
-                {   
-                    allRecommendedSongs.length !== 0 ? allRecommendedSongs.map((song) => (
-                    <LibrarySong
-                        setCurrentSong={setCurrentSong}
-                        song={song}
-                        setSongs={setSongs}
-                        songs={songs}
-                        id={song.id}
-                        key={song.id}
-                        isPlaying={isPlaying}
-                        audioRef={audioRef}
-                        typeOfButton={typeOfButton}
-                        listQueue={listQueue}
-                        setListQueue={setListQueue}
-                    />
-                )) : (
-                    <p style={{
-                        color: 'gray'
-                    }}>
-                        There are no suitable songs to recommend...
-                    </p>
+            } : null}>
+                {
+                    recommendedSongs.length !== 0 ? recommendedSongs.map((song) => (
+                        <LibrarySong
+                            setCurrentSong={setCurrentSong}
+                            song={song}
+                            setSongs={setSongs}
+                            songs={listQueue}
+                            id={song.id}
+                            key={song.id}
+
+                            isPlaying={isPlaying}
+                            audioRef={audioRef}
+                            typeOfButton={typeOfButton}
+                            listQueue={listQueue}
+                            setListQueue={setListQueue}
+                        />
+                    )) : (
+                        <p style={{
+                            color: 'gray'
+                        }}>
+                            There are no suitable songs to recommend...
+                        </p>
                     )
                 }
             </div>
