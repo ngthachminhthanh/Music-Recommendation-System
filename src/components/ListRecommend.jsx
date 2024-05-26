@@ -2,6 +2,7 @@ import LibrarySong from "./LibrarySong";
 import { useEffect, useState } from "react";
 
 export default function ListRecommend({
+    songs,
     setSongs,
     currentSong,
     setCurrentSong,
@@ -11,6 +12,10 @@ export default function ListRecommend({
     setListQueue,
     typeOfButton,
 }) {
+    // Nếu sợ thao tác làm ảnh hưởng mảng data gốc thì tạo 1 bản copy rồi xài như sau
+    let arrtemp = songs;
+    console.log(arrtemp)
+
     const [recommendedSongs, setRecommendedSongs] = useState([]);
 
     // Hàm tính Jaccard similarity
