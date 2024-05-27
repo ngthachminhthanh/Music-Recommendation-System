@@ -12,9 +12,8 @@ export default function ListRecommend({
     setListQueue,
     typeOfButton,
 }) {
-    // Nếu sợ thao tác làm ảnh hưởng mảng data gốc thì tạo 1 bản copy rồi xài như sau
     let arrtemp = songs;
-    console.log(arrtemp)
+    console.log(arrtemp);
 
     const [recommendedSongs, setRecommendedSongs] = useState([]);
 
@@ -25,7 +24,6 @@ export default function ListRecommend({
         return intersection.size / union.size;
     }
 
-
     // Hàm tạo tập hợp từ các thuộc tính của bài hát
     function createAttributeSet(song) {
         return new Set(['genre', 'artist', 'album'].map(attr => song[attr]));
@@ -33,74 +31,57 @@ export default function ListRecommend({
 
     // Lớp hệ thống gợi ý
     class SongRecommender {
-        constructor(songs) {
-            this.updateData(songs);
-        }
+        constructor(queue, allSongs) {
+            this.queue = queue;
+            this.allSongs = allSongs;
 
-        updateData(songs) {
-            this.songs = songs;
+            // Tính toán tập hợp cho mỗi bài hát trong queue và allSongs
+            this.queueAttributeSets = queue.map(createAttributeSet);
+            this.allSongsAttributeSets = allSongs.map(createAttributeSet);
 
-            // Tính toán tập hợp cho mỗi bài hát
-            this.attributeSets = songs.map(createAttributeSet);
-
-            // Tính Jaccard similarity giữa các bài hát
-            this.jaccardSimMatrix = this.attributeSets.map((setA, i) =>
-                this.attributeSets.map((setB, j) => {
-                    if (i === j) return 0; // Nếu index của setA và setB giống nhau, trả về 0
+            // Tính Jaccard similarity giữa mỗi bài trong queue với mỗi bài trong allSongs
+            this.jaccardSimMatrix = this.allSongsAttributeSets.map((setB, j) =>
+                this.queueAttributeSets.map((setA, i) => {
                     const sim = jaccardSimilarity(setA, setB);
-                    console.log(`Jaccard similarity between ${this.songs[i].name} and ${this.songs[j].name}: ${sim}`);
+                    console.log(`Jaccard similarity between ${this.allSongs[j].name} and ${this.queue[i].name}: ${sim}`);
                     return sim;
                 })
             );
         }
 
-        getAllRecommendations() {
-            return this.songs.map((song, index) => {
-                const simScores = this.jaccardSimMatrix[index]
-                    .map((score, idx) => ({ idx, score }))
-                    .sort((a, b) => b.score - a.score)
-                    .filter(pair => pair.idx !== index)
-                    .map(pair => this.songs[pair.idx]);
+        getTopRecommendations() {
+            // Tính tổng điểm số Jaccard cho mỗi bài hát trong allSongs với tất cả các bài hát trong queue
+            const totalSimScores = this.jaccardSimMatrix.map((simScores, j) => ({
+                song: this.allSongs[j],
+                totalScore: simScores.reduce((sum, score) => sum + score, 0),
+                matchesArtist: this.queue.some(queueSong => queueSong.artist === this.allSongs[j].artist)
+            }));
 
-                return {
-                    ...song,
-                    recommendations: simScores.slice(0, 3) // Lấy 3 bài hát gợi ý tương tự nhất
-                };
-            });
-        }
+            // Loại bỏ các bài hát đã có trong queue
+            const filteredSimScores = totalSimScores.filter(({ song }) =>
+                !this.queue.some(queueSong => queueSong.id === song.id)
+            );
 
-        getRecommendationsForCurrentSong(currentSongId) {
-            const songIndex = this.songs.findIndex(song => song.id === currentSongId);
-            if (songIndex === -1) return [];
+            // Sắp xếp theo tổng điểm số Jaccard giảm dần và ưu tiên bài hát có cùng artist nếu điểm số bằng nhau
+            const sortedSimScores = filteredSimScores.sort((a, b) =>
+                b.totalScore - a.totalScore || (b.matchesArtist ? 1 : -1)
+            );
 
-            const simScores = this.jaccardSimMatrix[songIndex]
-                .map((score, idx) => ({ idx, score }))
-                .sort((a, b) => b.score - a.score)
-                .filter(pair => pair.idx !== songIndex)
-                .map(pair => this.songs[pair.idx]);
-
-            return simScores.slice(0, 3); // Lấy 3 bài hát gợi ý tương tự nhất
+            // Lấy 3 bài hát có điểm số cao nhất
+            return sortedSimScores.slice(0, 3).map(({ song }) => song);
         }
     }
 
     // Khởi tạo hệ thống gợi ý
     useEffect(() => {
         if (listQueue.length > 0) {
-            const recommender = new SongRecommender(listQueue);
-            let recommendations = [];
+            const recommender = new SongRecommender(listQueue, arrtemp);
+            const topRecommendations = recommender.getTopRecommendations();
 
-            if (currentSong) {
-                recommendations = recommender.getRecommendationsForCurrentSong(currentSong.id);
-            } else {
-                // Nếu không có currentSong, lấy gợi ý từ bài hát đầu tiên trong hàng đợi
-                recommendations = recommender.getRecommendationsForCurrentSong(listQueue[0].id);
-            }
-
-            console.log("All Recommended Songs: ", recommender.getAllRecommendations());
-            console.log("Current Song Recommendations: ", recommendations);
-            setRecommendedSongs(recommendations);
+            console.log("Top Recommended Songs: ", topRecommendations);
+            setRecommendedSongs(topRecommendations);
         }
-    }, [listQueue, currentSong]);
+    }, [listQueue, arrtemp]);
 
     return (
         <>
@@ -119,7 +100,6 @@ export default function ListRecommend({
                             songs={listQueue}
                             id={song.id}
                             key={song.id}
-
                             isPlaying={isPlaying}
                             audioRef={audioRef}
                             typeOfButton={typeOfButton}

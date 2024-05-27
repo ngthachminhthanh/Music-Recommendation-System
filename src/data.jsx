@@ -11,11 +11,12 @@ function chillHop() {
             color: ["#0076d1", "#180070"],
             id: uuidv4(),
             active: true,
-            lyric: "0.4",
-            mood: "0.6",
-            energy: "0.5",
+            lyric: 0.4,
+            mood: 0.6,
+            energy: 0.5,
             genre: "R&B",
-            album: "SOS"
+            album: "SOS",
+            explicit: false
 
         },
         {
@@ -31,7 +32,8 @@ function chillHop() {
             mood: "0.3",
             energy: "0.35",
             genre: "Pop",
-            album: "Hit me hard and soft"
+            album: "Hit me hard and soft",
+            explicit: false
         },
         {
             name: "Blank Space",
@@ -46,7 +48,8 @@ function chillHop() {
             mood: "0.8",
             energy: "0.85",
             genre: "Pop",
-            album: "1989"
+            album: "1989",
+            explicit: false
         },
         {
             name: "Blinding Lights",
@@ -61,7 +64,8 @@ function chillHop() {
             mood: "1.0",
             energy: "0.95",
             genre: "R&B",
-            album: "Afterhour"
+            album: "Afterhour",
+            explicit: false
         },
         {
             name: "Ticking",
@@ -76,7 +80,8 @@ function chillHop() {
             mood: "0.1",
             energy: "0.45",
             genre: "Country",
-            album: "Zach Bryan"
+            album: "Zach Bryan",
+            explicit: false
         },
         {
             name: "CHIHIRO",
@@ -91,7 +96,8 @@ function chillHop() {
             mood: "0.5",
             energy: "0.65",
             genre: "Pop",
-            album: "Hit me hard and soft"
+            album: "Hit me hard and soft",
+            explicit: false
         },
         {
             name: "Love Story",
@@ -106,7 +112,8 @@ function chillHop() {
             mood: "0.75",
             energy: "0.85",
             genre: "Country",
-            album: "Fearless"
+            album: "Fearless",
+            explicit: false
         },
         {
             name: "Save Your Tears",
@@ -121,7 +128,8 @@ function chillHop() {
             mood: "0.55",
             energy: "0.75",
             genre: "R&B",
-            album: "Afterhour"
+            album: "Afterhour",
+            explicit: false
         },
         {
             name: "SKINNY",
@@ -136,7 +144,8 @@ function chillHop() {
             mood: "0.25",
             energy: "0.53",
             genre: "Pop",
-            album: "Hit me hard and soft"
+            album: "Hit me hard and soft",
+            explicit: false
         },
         {
             name: "Peter",
@@ -150,8 +159,9 @@ function chillHop() {
             lyric: "0.84",
             mood: "0.28",
             energy: "0.73",
-            genre: "Country",
-            album: "The Tortured Poets Department"
+            genre: "Folk",
+            album: "The Tortured Poets Department",
+            explicit: false
         },
     ];
 }
