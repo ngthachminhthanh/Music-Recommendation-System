@@ -1,13 +1,14 @@
+import { memo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMusic } from "@fortawesome/free-solid-svg-icons";
 
-export default function Nav({
+const Nav = ({
     libraryStatus,
     setLibraryStatus,
     listStatus,
     setListStatus,
     darkThemeHandler,
-}) {
+}) => {
     return (
         <nav>
             <h1>Waves</h1>
@@ -48,3 +49,5 @@ export default function Nav({
         </nav>
     );
 }
+
+export default memo(Nav);
