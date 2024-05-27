@@ -1,4 +1,6 @@
-export default function Song({ currentSong, songInfo }) {
+import { memo } from "react";
+
+const Song = ({ currentSong, songInfo }) => {
     const songAnimation = {
         transform: `rotate(${songInfo.currentTime * 10}deg)`,
     };
@@ -15,3 +17,5 @@ export default function Song({ currentSong, songInfo }) {
         </div>
     );
 }
+
+export default memo(Song);

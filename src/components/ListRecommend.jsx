@@ -1,7 +1,7 @@
 import LibrarySong from "./LibrarySong";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 
-export default function ListRecommend({
+const ListRecommend = ({
     songs,
     setSongs,
     currentSong,
@@ -11,11 +11,15 @@ export default function ListRecommend({
     listQueue,
     setListQueue,
     typeOfButton,
-}) {
+}) => {
     let arrtemp = songs;
-    console.log(arrtemp);
+    console.log("Mảng copy (arrtemp) từ mảng data gốc (songs): ", arrtemp);
 
     const [recommendedSongs, setRecommendedSongs] = useState([]);
+
+    console.log("Danh sách bài hát gốc (songs): ", songs );
+    console.log("Danh sách các bài hiện có trong hàng chờ (listQueue): ",listQueue)
+    console.log("Danh sách các bài được gợi ý (recommendedSongs): ",recommendedSongs)
 
     // Hàm tính Jaccard similarity
     function jaccardSimilarity(setA, setB) {
@@ -74,6 +78,10 @@ export default function ListRecommend({
 
     // Khởi tạo hệ thống gợi ý
     useEffect(() => {
+        if (listQueue.length === 0) {
+            setRecommendedSongs([]);
+        }
+
         if (listQueue.length > 0) {
             const recommender = new SongRecommender(listQueue, arrtemp);
             const topRecommendations = recommender.getTopRecommendations();
@@ -97,7 +105,7 @@ export default function ListRecommend({
                             setCurrentSong={setCurrentSong}
                             song={song}
                             setSongs={setSongs}
-                            songs={listQueue}
+                            songs={songs}
                             id={song.id}
                             key={song.id}
                             isPlaying={isPlaying}
@@ -110,7 +118,7 @@ export default function ListRecommend({
                         <p style={{
                             color: 'gray'
                         }}>
-                            There are no suitable songs to recommend...
+                            There are no suitable songs to recommend
                         </p>
                     )
                 }
@@ -118,3 +126,5 @@ export default function ListRecommend({
         </>
     );
 }
+
+export default memo(ListRecommend);

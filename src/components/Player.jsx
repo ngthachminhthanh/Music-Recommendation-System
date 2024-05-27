@@ -7,9 +7,9 @@ import {
     faVolumeMute,
     faVolumeUp,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useState, memo } from "react";
 
-export default function Player({
+const Player = ({
     currentSong,
     isPlaying,
     setIsPlaying,
@@ -19,7 +19,7 @@ export default function Player({
     songs,
     setCurrentSong,
     setSongs,
-}) {    
+}) => {    
     const activeLibraryHandler = (nextPrev) => {
         const activeSong = songs.map((song) => {
             if (song.id === nextPrev.id) {
@@ -173,3 +173,5 @@ export default function Player({
         </div>
     );
 }
+
+export default memo(Player);
