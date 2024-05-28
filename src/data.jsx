@@ -5,9 +5,9 @@ function chillHop() {
         {
             name: "Kill Bill",
             cover:
-                "https://i1.sndcdn.com/artworks-L1qZHQcUl4fpjOya-gpaSLQ-t500x500.jpg",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/SOS.png?raw=true",
             artist: "SZA",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/SZA%20-%20Kill%20Bill.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/SZA%20-%20Kill%20Bill.mp3?raw=true",
             color: ["#0076d1", "#180070"],
             id: uuidv4(),
             active: true,
@@ -25,7 +25,7 @@ function chillHop() {
             cover:
                 "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Hit%20me%20hard%20and%20soft%20(Billie).png?raw=true",
             artist: "Billie Eilish",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Billie%20Eilish%20-%20BLUE.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Billie%20Eilish%20-%20BLUE.mp3?raw=true",
             color: ["#180070", "#00081f"],
             id: uuidv4(),
             active: false,
@@ -42,7 +42,7 @@ function chillHop() {
             cover:
                 "https://github.com/q113pt/MusicLibrary/blob/main/Cover/1989%20(%20Blank%20Space%20).png?raw=true",
             artist: "Taylor Swift",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Taylor%20Swift%20-%20Blank%20Space.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Taylor%20Swift%20-%20Blank%20Space.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -59,7 +59,7 @@ function chillHop() {
             cover:
                 "https://github.com/q113pt/MusicLibrary/blob/main/Cover/After%20Hours%20The%20Weeknd.jpg?raw=true",
             artist: "The Weekend",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/The%20Weeknd%20-%20Blinding%20Lights.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/The%20Weeknd%20-%20Blinding%20Lights.mp3?raw=true",
             color: ["#CD607D", "#c94043"],
             id: uuidv4(),
             active: false,
@@ -76,7 +76,7 @@ function chillHop() {
             cover:
                 "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Zach%20Bryan.png?raw=true",
             artist: "Zach Bryan",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Zach%20Bryan%20-%20Ticking.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Zach%20Bryan%20-%20Ticking.mp3?raw=true",
             color: ["#205950", "#2ab3bf"],
             id: uuidv4(),
             active: false,
@@ -93,7 +93,7 @@ function chillHop() {
             cover:
                 "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Hit%20me%20hard%20and%20soft%20(Billie).png?raw=true",
             artist: "Billie Eilish",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Billie%20Eilish%20-%20CHIHIRO.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Billie%20Eilish%20-%20CHIHIRO.mp3?raw=true",
             color: ["#180070", "#00081f"],
             id: uuidv4(),
             active: false,
@@ -110,7 +110,7 @@ function chillHop() {
             cover:
                 "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Fearless%20(%20Love%20Story%20).png?raw=true",
             artist: "Taylor Swift",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Taylor%20Swift%20-%20Love%20Story.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Taylor%20Swift%20-%20Love%20Story.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -127,7 +127,7 @@ function chillHop() {
             cover:
                 "https://github.com/q113pt/MusicLibrary/blob/main/Cover/After%20Hours%20The%20Weeknd.jpg?raw=true",
             artist: "The Weekend",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/The%20Weeknd%20-%20Save%20Your%20Tears.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/The%20Weeknd%20-%20Save%20Your%20Tears.mp3?raw=true",
             color: ["#EF8EA9", "#ab417f"],
             id: uuidv4(),
             active: false,
@@ -144,7 +144,7 @@ function chillHop() {
             cover:
                 "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Hit%20me%20hard%20and%20soft%20(Billie).png?raw=true",
             artist: "Billie Eilish",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Billie%20Eilish%20-%20SKINNY.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Billie%20Eilish%20-%20SKINNY.mp3?raw=true",
             color: ["#180070", "#00081f"],
             id: uuidv4(),
             active: false,
@@ -161,7 +161,7 @@ function chillHop() {
             cover:
                 "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
             artist: "Taylor Swift",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Taylor%20Swift%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Taylor%20Swift%20-%20Peter.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -178,7 +178,7 @@ function chillHop() {
             cover:
                 "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
             artist: "Taylor Swift",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Taylor%20Swift%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Taylor%20Swift%20-%20Down%20Bad.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -193,9 +193,9 @@ function chillHop() {
         {
             name: "Bad Blood",
             cover:
-                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/1989%20(%20Blank%20Space%20).png?raw=true",
             artist: "Taylor Swift",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Taylor%20Swift%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Taylor%20Swift%20-%20Bad%20Blood.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -210,9 +210,9 @@ function chillHop() {
         {
             name: "drivers license",
             cover: 
-                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Olivia_SOUR.png?raw=true",
             artist: "Olivia",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Olivia%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/drivers%20license.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -227,9 +227,9 @@ function chillHop() {
         {
             name: "deja vu",
             cover: 
-                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Olivia_SOUR.png?raw=true",
             artist: "Olivia",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Olivia%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/deja%20vu.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -244,9 +244,9 @@ function chillHop() {
         {
             name: "traitor",
             cover: 
-                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Olivia_SOUR.png?raw=true",
             artist: "Olivia",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Olivia%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/traitor.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -261,9 +261,9 @@ function chillHop() {
         {
             name: "making the bed",
             cover: 
-                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Olivia_Guts.png?raw=true",
             artist: "Olivia",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Olivia%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/making%20the%20bed.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -278,9 +278,9 @@ function chillHop() {
         {
             name: "lacy",
             cover: 
-                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Olivia_Guts.png?raw=true",
             artist: "Olivia",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Olivia%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Olivia%20Rodrigo%20-%20lacy.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -295,9 +295,9 @@ function chillHop() {
         {
             name: "bad guy",
             cover: 
-                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/BillieEilish_Wwfawdwg.jpg?raw=true",
             artist: "Billie Eillish",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Billie%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/bad%20guy.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -312,9 +312,9 @@ function chillHop() {
         {
             name: "Happier than ever",
             cover: 
-                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/BillieEilish_HappierThanEver.jpg?raw=true",
             artist: "Billie Eillish",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Billie%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Billie%20Eilish%20-%20Happier%20Than%20Ever.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -329,9 +329,9 @@ function chillHop() {
         {
             name: "Therefore i am",
             cover: 
-                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/BillieEilish_HappierThanEver.jpg?raw=true",
             artist: "Billie Eillish",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Billie%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Billie%20Eilish%20-%20Therefore%20I%20Am.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -346,9 +346,9 @@ function chillHop() {
         {
             name: "Billie Bossa Nova",
             cover: 
-                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/BillieEilish_HappierThanEver.jpg?raw=true",
             artist: "Billie Eillish",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Billie%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Billie%20Eilish%20-%20Billie%20Bossa%20Nova.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -365,7 +365,7 @@ function chillHop() {
             cover:
                 "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Hit%20me%20hard%20and%20soft%20(Billie).png?raw=true",
             artist: "Billie Eilish",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Billie%20Eilish%20-%20SKINNY.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Billie%20Eilish%20-%20LUNCH.mp3?raw=true",
             color: ["#180070", "#00081f"],
             id: uuidv4(),
             active: false,
@@ -380,9 +380,9 @@ function chillHop() {
         {
             name: "Houdini",
             cover:  
-                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Dua_RadicalOptimisim.jpg?raw=true",
             artist: "Dua Lipa",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Dua%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Dua%20Lipa%20-%20Houdini%20(Official.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -397,9 +397,9 @@ function chillHop() {
         {
             name: "These Walls",
             cover:  
-                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Dua_RadicalOptimisim.jpg?raw=true",
             artist: "Dua Lipa",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Dua%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Dua%20Lipa%20-%20These%20Walls.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -414,9 +414,9 @@ function chillHop() {
         {
             name: "End Of An Era",
             cover:  
-                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Dua_RadicalOptimisim.jpg?raw=true",
             artist: "Dua Lipa",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Dua%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Dua%20Lipa%20-%20End%20Of%20An%20Era.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -431,9 +431,9 @@ function chillHop() {
         {
             name: "Levitating",
             cover:  
-                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Dua_FN.png?raw=true",
             artist: "Dua Lipa",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Dua%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Dua%20Lipa%20-%20Levitating.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -448,9 +448,9 @@ function chillHop() {
         {
             name: "Physical",
             cover:  
-                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+                "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Dua_FN.png?raw=true",
             artist: "Dua Lipa",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Dua%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Dua%20Lipa%20-%20Physical.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -464,9 +464,9 @@ function chillHop() {
         },
         {
             name: "Royal",
-            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Lorde_PureHeroine.jpg?raw=true",
             artist: "Lorde",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Lorde%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Lorde%20-%20Royals.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -480,9 +480,9 @@ function chillHop() {
         },
         {
             name: "Buzzcut Season",
-            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Lorde_PureHeroine.jpg?raw=true",
             artist: "Lorde",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Lorde%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Lorde%20-%20Buzzcut%20Season.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -496,9 +496,9 @@ function chillHop() {
         },
         {
             name: "Hello",
-            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Adele_25.jpg?raw=true",
             artist: "Adele",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Adele%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Adele%20%20Hello.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -512,9 +512,9 @@ function chillHop() {
         },
         {
             name: "When We Were Young",
-            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Adele_25.jpg?raw=true",
             artist: "Adele",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Adele%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Adele%20When%20We%20Were%20Young.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -528,9 +528,9 @@ function chillHop() {
         },
         {
             name: "Love In The Dark",
-            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Adele_25.jpg?raw=true",
             artist: "Adele",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Adele%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Adele%20%20-%20Love%20in%20the%20Dark.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -544,9 +544,9 @@ function chillHop() {
         },
         {
             name: "Rolling In The Deep",
-            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Adele_21.jpg?raw=true",
             artist: "Adele",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Adele%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Adele_%20Rolling%20In%20The%20Deep.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -560,9 +560,9 @@ function chillHop() {
         },
         {
             name: "Set Fire To The Rain",
-            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Adele_21.jpg?raw=true",
             artist: "Adele",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Adele%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Adele%20Set%20Fire%20To%20The%20Rain.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -576,9 +576,9 @@ function chillHop() {
         },
         {
             name: "Work",
-            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Rihana_Anti.jpg?raw=true",
             artist: "Rihanna",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Rihanna%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Rihanna%20-%20Work%20ft.%20Drake.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -592,9 +592,9 @@ function chillHop() {
         },
         {
             name: "Love On The Brain",
-            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Rihana_Anti.jpg?raw=true",
             artist: "Rihanna",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Rihanna%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Love%20On%20The%20Brain.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -608,9 +608,9 @@ function chillHop() {
         },
         {
             name: "Needed me",
-            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Rihana_Anti.jpg?raw=true",
             artist: "Rihanna",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Rihanna%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Needed%20Me.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -624,9 +624,9 @@ function chillHop() {
         },
         {
             name: "Umbrella",
-            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Rihanna_GoodGirlGoneBadReloaded.png?raw=true",
             artist: "Rihanna",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Rihanna%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Rihanna%20-%20Umbrella.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -640,9 +640,9 @@ function chillHop() {
         },
         {
             name: "Don't Stop the Music",
-            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Rihanna_GoodGirlGoneBadReloaded.png?raw=true",
             artist: "Rihanna",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Rihanna%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Rihanna%20-%20Don't%20Stop%20The%20Music.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -656,9 +656,9 @@ function chillHop() {
         },
         {
             name: "Flower",
-            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Miley_EndlessSummerVacation.png?raw=true",
             artist: "Miley Cyrus",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Miley%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Miley%20Cyrus%20-%20Flowers.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -672,9 +672,9 @@ function chillHop() {
         },
         {
             name: "Jaded",
-            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Miley_EndlessSummerVacation.png?raw=true",
             artist: "Miley Cyrus",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Miley%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Miley%20Cyrus%20-%20Jaded.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -688,9 +688,9 @@ function chillHop() {
         },
         {
             name: "River",
-            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Miley_EndlessSummerVacation.png?raw=true",
             artist: "Miley Cyrus",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Miley%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Miley%20Cyrus%20-%20River.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -704,9 +704,9 @@ function chillHop() {
         },
         {
             name: "Wrecking Ball",
-            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Miley_Bangerz.jpg?raw=true",
             artist: "Miley Cyrus",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Miley%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Miley%20Cyrus%20-%20Wrecking%20Ball.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,
@@ -720,9 +720,9 @@ function chillHop() {
         },
         {
             name: "We can't stop",
-            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/the%20ttpd%20(%20Peter%20).png?raw=true",
+            cover: "https://github.com/q113pt/MusicLibrary/blob/main/Cover/Miley_Bangerz.jpg?raw=true",
             artist: "Miley Cyrus",
-            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Miley%20-%20Peter.mp3?raw=true",
+            audio: "https://github.com/q113pt/MusicLibrary/blob/main/Audio/Miley%20Cyrus%20-%20We%20Can't%20Stop.mp3?raw=true",
             color: ["#ffaddd", "#ff007b"],
             id: uuidv4(),
             active: false,

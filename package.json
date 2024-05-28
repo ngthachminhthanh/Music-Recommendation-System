@@ -6,10 +6,10 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.13",
-    "sass": "^1.55.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-scripts": "4.0.1",
+    "react-scripts": "^5.0.1",
+    "sass": "^1.55.0",
     "uuid": "^8.3.2"
   },
   "scripts": {
