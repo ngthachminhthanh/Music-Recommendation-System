@@ -12,14 +12,7 @@ const ListRecommend = ({
     setListQueue,
     typeOfButton,
 }) => {
-    let arrtemp = songs;
-    console.log("Mảng copy (arrtemp) từ mảng data gốc (songs): ", arrtemp);
-
     const [recommendedSongs, setRecommendedSongs] = useState([]);
-
-    console.log("Danh sách bài hát gốc (songs): ", songs );
-    console.log("Danh sách các bài hiện có trong hàng chờ (listQueue): ",listQueue)
-    console.log("Danh sách các bài được gợi ý (recommendedSongs): ",recommendedSongs)
 
     // Hàm tính Jaccard similarity
     function jaccardSimilarity(setA, setB) {
@@ -30,7 +23,22 @@ const ListRecommend = ({
 
     // Hàm tạo tập hợp từ các thuộc tính của bài hát
     function createAttributeSet(song) {
-        return new Set(['genre', 'artist', 'album'].map(attr => song[attr]));
+        return new Set(['genre', 'artist', 'album', 'explicit'].map(attr => song[attr]));
+    }
+
+    // Hàm tính Cosine Similarity
+    function cosineSimilarity(songA, songB) {
+        const attributes = ['tempo', 'danceability', 'valence', 'energy', 'duration', 'loudness'];
+        const dotProduct = attributes.reduce((sum, attr) => sum + songA[attr] * songB[attr], 0);
+        const magnitudeA = Math.sqrt(attributes.reduce((sum, attr) => sum + songA[attr] * songA[attr], 0));
+        const magnitudeB = Math.sqrt(attributes.reduce((sum, attr) => sum + songB[attr] * songB[attr], 0));
+        return dotProduct / (magnitudeA * magnitudeB);
+    }
+
+    // Hàm tính Euclidean Distance
+    function euclideanDistance(songA, songB) {
+        const attributes = ['tempo', 'danceability', 'valence', 'energy', 'duration', 'loudness'];
+        return Math.sqrt(attributes.reduce((sum, attr) => sum + Math.pow(songA[attr] - songB[attr], 2), 0));
     }
 
     // Lớp hệ thống gợi ý
@@ -45,15 +53,25 @@ const ListRecommend = ({
 
             // Tính Jaccard similarity giữa mỗi bài trong queue với mỗi bài trong allSongs
             this.jaccardSimMatrix = this.allSongsAttributeSets.map((setB, j) =>
-                this.queueAttributeSets.map((setA, i) => {
-                    const sim = jaccardSimilarity(setA, setB);
-                    console.log(`Jaccard similarity between ${this.allSongs[j].name} and ${this.queue[i].name}: ${sim}`);
-                    return sim;
-                })
+                this.queueAttributeSets.map((setA, i) => jaccardSimilarity(setA, setB))
             );
+
+            // Tính Cosine similarity và Euclidean Distance giữa mỗi bài trong queue với mỗi bài trong allSongs
+            this.cosineSimMatrix = this.allSongs.map((songB, j) =>
+                this.queue.map((songA, i) => cosineSimilarity(songA, songB))
+            );
+
+            this.euclideanDistMatrix = this.allSongs.map((songB, j) =>
+                this.queue.map((songA, i) => euclideanDistance(songA, songB))
+            );
+
+            // In ra các ma trận trọng số
+            console.log("Jaccard Similarity Matrix:", this.jaccardSimMatrix);
+            console.log("Cosine Similarity Matrix:", this.cosineSimMatrix);
+            console.log("Euclidean Distance Matrix:", this.euclideanDistMatrix);
         }
 
-        getTopRecommendations() {
+        getTopJaccardRecommendations() {
             // Tính tổng điểm số Jaccard cho mỗi bài hát trong allSongs với tất cả các bài hát trong queue
             const totalSimScores = this.jaccardSimMatrix.map((simScores, j) => ({
                 song: this.allSongs[j],
@@ -71,8 +89,51 @@ const ListRecommend = ({
                 b.totalScore - a.totalScore || (b.matchesArtist ? 1 : -1)
             );
 
+            // Lấy 2 bài hát có điểm số cao nhất
+            const topJaccardRecommendations = sortedSimScores.slice(0, 2).map(({ song }) => song);
+            console.log("Top Jaccard Recommendations: ", topJaccardRecommendations);
+            return topJaccardRecommendations;
+        }
+
+        getTopCosineEuclideanRecommendations(excludeSongs) {
+            // Tính tổng điểm số Cosine similarity và Euclidean Distance
+            const totalCosineScores = this.cosineSimMatrix.map((simScores, j) => ({
+                song: this.allSongs[j],
+                totalScore: simScores.reduce((sum, score) => sum + score, 0)
+            }));
+
+            const totalEuclideanScores = this.euclideanDistMatrix.map((distScores, j) => ({
+                song: this.allSongs[j],
+                totalScore: distScores.reduce((sum, dist) => sum + dist, 0)
+            }));
+
+            // Kết hợp điểm số trung bình của Cosine và Euclidean
+            const combinedScores = totalCosineScores.map((cosineScore, j) => ({
+                song: cosineScore.song,
+                totalScore: (cosineScore.totalScore + (1 / (1 + totalEuclideanScores[j].totalScore))) / 2
+            }));
+
+            // Loại bỏ các bài hát đã có trong queue và các bài hát đã được gợi ý từ Jaccard
+            const filteredSimScores = combinedScores.filter(({ song }) =>
+                !this.queue.some(queueSong => queueSong.id === song.id) &&
+                !excludeSongs.some(excludeSong => excludeSong.id === song.id)
+            );
+
+            // Sắp xếp theo tổng điểm số giảm dần
+            const sortedSimScores = filteredSimScores.sort((a, b) =>
+                b.totalScore - a.totalScore
+            );
+
             // Lấy 3 bài hát có điểm số cao nhất
-            return sortedSimScores.slice(0, 3).map(({ song }) => song);
+            const topCosineEuclideanRecommendations = sortedSimScores.slice(0, 3).map(({ song }) => song);
+            console.log("Top Cosine-Euclidean Recommendations: ", topCosineEuclideanRecommendations);
+            return topCosineEuclideanRecommendations;
+        }
+
+        getTopRecommendations() {
+            const jaccardRecommendations = this.getTopJaccardRecommendations();
+            const cosineEuclideanRecommendations = this.getTopCosineEuclideanRecommendations(jaccardRecommendations);
+            return [...jaccardRecommendations, ...cosineEuclideanRecommendations];
         }
     }
 
@@ -83,13 +144,13 @@ const ListRecommend = ({
         }
 
         if (listQueue.length > 0) {
-            const recommender = new SongRecommender(listQueue, arrtemp);
+            const recommender = new SongRecommender(listQueue, songs);
             const topRecommendations = recommender.getTopRecommendations();
 
             console.log("Top Recommended Songs: ", topRecommendations);
             setRecommendedSongs(topRecommendations);
         }
-    }, [listQueue, arrtemp]);
+    }, [listQueue, songs]);
 
     return (
         <>
