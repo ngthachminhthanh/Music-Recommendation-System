@@ -1,6 +1,8 @@
 import { memo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMusic } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom"; 
+import { useState } from "react";
 
 const Nav = ({
     libraryStatus,
@@ -8,30 +10,61 @@ const Nav = ({
     listStatus,
     setListStatus,
     darkThemeHandler,
+    back,
+    setBack
 }) => {
+    const navigate = useNavigate();  
+    const [checkManaging, setCheckManging] = useState(false)
+
     return (
         <nav>
             <h1>Waves</h1>
 
-            <button
-                onClick={() => {
-                    setLibraryStatus(!libraryStatus)
-                    setListStatus(false)
-                }}
-                className={libraryStatus ? "active_library_btn" : ""}
-            >
-                Library <FontAwesomeIcon icon={faMusic} />
-            </button>
+            { 
+                checkManaging ? null : 
+                <button
+                    onClick={() => {
+                        setLibraryStatus(!libraryStatus);
+                        setListStatus(false);
+                    }}
+                    className={libraryStatus ? "active_library_btn" : ""}
+                >
+                    Library <FontAwesomeIcon icon={faMusic} />
+                </button>
+            }
+            
 
             <button
                 onClick={() => {
-                    setListStatus(!listStatus)
-                    setLibraryStatus(false)
+                    if (back) {
+                        navigate("/manage");
+                    } else {
+                        navigate("/");
+                    }
+                    setCheckManging(!checkManaging);
+                    setLibraryStatus(false);
+                    setListStatus(false);
+                    setBack(!back);
                 }}
-                className={listStatus ? "active_list_btn" : ""}
             >
-                List <FontAwesomeIcon icon={faMusic} />
+                {
+                    back ? "Add / Update / Delete Songs " : "Back to play music! "
+                }
+                <FontAwesomeIcon icon={faMusic} />
             </button>
+
+            {
+                checkManaging ? null : 
+                <button
+                    onClick={() => {
+                        setListStatus(!listStatus);
+                        setLibraryStatus(false);
+                    }}
+                    className={listStatus ? "active_list_btn" : ""}
+                >
+                    List <FontAwesomeIcon icon={faMusic} />
+                </button>
+            }
 
             <div className="switch" id="switch">
                 <input
@@ -48,6 +81,6 @@ const Nav = ({
             </div>
         </nav>
     );
-}
+};
 
 export default memo(Nav);

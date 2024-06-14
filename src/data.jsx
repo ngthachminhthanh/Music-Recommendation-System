@@ -20,7 +20,6 @@ function chillHop() {
             genre: "R&B",
             album: "SOS",
             explicit: false
-
         },
         {
             name: "BLUE",
@@ -3512,11 +3511,6 @@ function chillHop() {
             album: "Plastic Hearts",
             explicit: false
         }
-
-
-
-
-
     ];
 }
 

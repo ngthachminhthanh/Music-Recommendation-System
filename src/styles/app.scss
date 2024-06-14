@@ -47,7 +47,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+label {
     color: var(--heading_font_color);
 }
 
@@ -71,13 +72,56 @@ h6 {
     margin-right: 20%;
 }
 
+@keyframes spin{
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.circle{
+    margin: 100px auto 0;
+    width: 275px;
+    height: 275px;
+    border-radius: 50%;
+    border: 6px solid transparent;
+    border-top-color: crimson;
+    border-bottom-color: crimson;
+    animation: spin 1s ease-in-out infinite;
+}
+
+.loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(204, 196, 196, 0.5); 
+}
+
+.loading-spinner {
+    position: relative;
+    margin-bottom: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-text {
+    position: absolute;
+    top: 57%;
+    font-size: 24px;
+    color: black; 
+}
+
 @media screen and (max-width: 768px) {
     .list_active {
         margin-left: 20%;
         margin-right: 0;
     }
 }
-
 
 @import "./player";
 @import "./song";
