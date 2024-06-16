@@ -20,7 +20,7 @@ const DataLoader = () => {
 
         fetchData();
     }, []);
-
+    
     if (loading) return (
         <div className="loading-container">
             <div className="loading-spinner">

@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useCallback, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
 import "./styles/app.scss";
 import Song from "./components/Song";
@@ -7,9 +7,21 @@ import Library from "./components/Library";
 import List from "./components/List";
 import Nav from "./components/Nav";
 import SongManagement from "./components/SongManagement"; 
+import { getAllMusic } from "./firebaseServices";
 
 function App({ initialSongs }) {
     const [songs, setSongs] = useState(initialSongs);
+
+    const refreshSongs = useCallback(async () => {
+        try {
+            const updatedSongs = await getAllMusic();
+            setSongs(updatedSongs);
+        } catch (error) {
+            console.error("Error refreshing songs: ", error);
+            alert("An error occurred while refreshing songs. Please try again.");
+        }
+    }, [setSongs]);
+
     const [currentSong, setCurrentSong] = useState(songs[0]);
     const [isPlaying, setIsPlaying] = useState(false);
 
@@ -147,7 +159,14 @@ function App({ initialSongs }) {
                             ></audio>
                         </> : <></>
                     } />
-                    <Route path="/manage" element={ back ? <></> : <SongManagement songs={songs} setSongs={setSongs} />} />
+                    <Route path="/manage" element={ 
+                        back ? 
+                        <></> : 
+                        <SongManagement 
+                            songs={songs} 
+                            setSongs={setSongs} 
+                            refreshSongs={refreshSongs} />} 
+                        />
                 </Routes>
             </div>
         </Router>

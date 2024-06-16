@@ -1,11 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid'; 
+import { addMusic, updateMusic, deleteMusic } from "../firebaseServices";
 
-const SongManagement = ({ songs, setSongs }) => {
+const SongManagement = ({ songs, setSongs, refreshSongs }) => {
     const [mode, setMode] = useState("view");
     const [selectedSongId, setSelectedSongId] = useState(null);
     const [songData, setSongData] = useState({});
 
+    useEffect(() => {
+        setSongData({
+            name: "",
+            artist: "",
+            genre: "",
+            album: "",
+            audio: "",
+            cover: "",
+            color: [],
+            danceability: "",
+            duration: "",
+            energy: "",
+            loudness: "",
+            tempo: "",
+            valence: "",
+            active: false
+        });
+    }, []);
+
+    // Hàm tạo màu ngẫu nhiên
+    const getRandomColor = () => {
+        return "#" + Math.floor(Math.random()*16777215).toString(16);
+    };
+    
     const handleAddSong = () => {
         setMode("add");
         setSongData({
@@ -14,14 +39,39 @@ const SongManagement = ({ songs, setSongs }) => {
             artist: "",
             genre: "",
             album: "",
-            // Add default values for other fields
+            audio: "",
+            cover: "",
+            color: [],
+            danceability: "",
+            duration: "",
+            energy: "",
+            loudness: "",
+            tempo: "",
+            valence: "",
+            active: false
         });
     };
 
     const handleUpdateSong = () => {
         setMode("update");
         setSelectedSongId(null);
-        setSongData({});
+        setSongData({
+            id:"",
+            name: "",
+            artist: "",
+            genre: "",
+            album: "",
+            audio: "",
+            cover: "",
+            color: [],
+            danceability: "",
+            duration: "",
+            energy: "",
+            loudness: "",
+            tempo: "",
+            valence: "",
+            active: false
+        });
     };
 
     const handleDeleteSong = () => {
@@ -33,7 +83,7 @@ const SongManagement = ({ songs, setSongs }) => {
         setMode("view");
     };
 
-    const handleConfirm = () => {
+    const handleConfirm = async () => {
         let confirmationMessage;
         if (mode === "add") {
             confirmationMessage = "Are you sure you want to add this song?";
@@ -44,28 +94,38 @@ const SongManagement = ({ songs, setSongs }) => {
         }
     
         if (window.confirm(confirmationMessage)) {
-            if (mode === "add") {
-                setSongs([...songs, songData]);
-            } else if (mode === "update" && selectedSongId !== null) {
-                const updatedSongs = songs.map(song =>
-                    song.id === selectedSongId ? { ...song, ...songData } : song
-                );
-                setSongs(updatedSongs);
-            } else if (mode === "delete" && selectedSongId !== null) {
-                const filteredSongs = songs.filter(song => song.id !== selectedSongId);
-                setSongs(filteredSongs);
+            try {
+                if (mode === "add") {
+                    const newSongData = {
+                        ...songData,
+                        color: [getRandomColor(), getRandomColor()],
+                        active: false,
+                    };
+                    await addMusic(newSongData);
+                    alert("Song added successfully!");
+                } else if (mode === "update" && songData.id) {
+                    await updateMusic(songData.id, songData);
+                    alert("Song updated successfully!");
+                } else if (mode === "delete" && selectedSongId !== null) {
+                    await deleteMusic(selectedSongId);
+                    alert("Song deleted successfully!");
+                }
+                
+                await refreshSongs();  
+                setMode("view");
+            } catch (error) {
+                console.error("Error in handleConfirm: ", error);
+                alert(`An error occurred: ${error.message}`);
             }
-            setMode("view");
         }
     };
-    
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setSongData({
-            ...songData,
+        setSongData(prevData => ({
+            ...prevData,
             [name]: value
-        });
+        }));
     };
 
     const handleSelectSong = (e) => {
@@ -74,6 +134,8 @@ const SongManagement = ({ songs, setSongs }) => {
         setSelectedSongId(songId);
         setSongData(selectedSong || {});
     };
+
+    const notPhone = window.innerWidth > 720 ? true: false;
 
     return (
         <div style={{
@@ -99,66 +161,133 @@ const SongManagement = ({ songs, setSongs }) => {
                                 overflow: "hidden", 
                                 whiteSpace: "nowrap" 
                             }}>
-                                <div>
-                                    <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
-                                        <label style={{ flex: "0 0 100px", textAlign: "left" }}>Song Name:</label>
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            value={songData.name}
-                                            onChange={handleInputChange}
-                                            style={{ padding: 10, marginLeft: 10, width: "300px" }}
-                                        />
+                                <div style={{
+                                    display: 'flex',
+                                    flexDirection: notPhone ? 'row' : 'column'
+                                }}>
+                                    <div style={{ padding: '10px 30px' }}>
+                                        <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
+                                            <label style={{ flex: "0 0 100px", textAlign: "left" }}>Song Name:</label>
+                                            <input
+                                                type="text"
+                                                name="name"
+                                                value={songData.name}
+                                                onChange={handleInputChange}
+                                                style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                            />
+                                        </div>
+                                        <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
+                                            <label style={{ flex: "0 0 100px", textAlign: "left" }}>Artist:</label>
+                                            <input
+                                                type="text"
+                                                name="artist"
+                                                value={songData.artist}
+                                                onChange={handleInputChange}
+                                                style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                            />
+                                        </div>
+                                        <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
+                                            <label style={{ flex: "0 0 100px", textAlign: "left" }}>Genre:</label>
+                                            <input
+                                                type="text"
+                                                name="genre"
+                                                value={songData.genre}
+                                                onChange={handleInputChange}
+                                                style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                            />
+                                        </div>
+                                        <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
+                                            <label style={{ flex: "0 0 100px", textAlign: "left" }}>Album:</label>
+                                            <input
+                                                type="text"
+                                                name="album"
+                                                value={songData.album}
+                                                onChange={handleInputChange}
+                                                style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                            />
+                                        </div>
+                                        <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
+                                            <label style={{ flex: "0 0 100px", textAlign: "left" }}>Link audio:</label>
+                                            <input
+                                                type="text"
+                                                name="audio"
+                                                value={songData.audio}
+                                                onChange={handleInputChange}
+                                                style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                            />
+                                        </div>
+                                        <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
+                                            <label style={{ flex: "0 0 100px", textAlign: "left" }}>Link cover:</label>
+                                            <input
+                                                type="text"
+                                                name="cover"
+                                                value={songData.cover}
+                                                onChange={handleInputChange}
+                                                style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                            />
+                                        </div>
                                     </div>
-                                    <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
-                                        <label style={{ flex: "0 0 100px", textAlign: "left" }}>Artist:</label>
-                                        <input
-                                            type="text"
-                                            name="artist"
-                                            value={songData.artist}
-                                            onChange={handleInputChange}
-                                            style={{ padding: 10, marginLeft: 10, width: "300px" }}
-                                        />
-                                    </div>
-                                    <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
-                                        <label style={{ flex: "0 0 100px", textAlign: "left" }}>Genre:</label>
-                                        <input
-                                            type="text"
-                                            name="genre"
-                                            value={songData.genre}
-                                            onChange={handleInputChange}
-                                            style={{ padding: 10, marginLeft: 10, width: "300px" }}
-                                        />
-                                    </div>
-                                    <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
-                                        <label style={{ flex: "0 0 100px", textAlign: "left" }}>Album:</label>
-                                        <input
-                                            type="text"
-                                            name="album"
-                                            value={songData.album}
-                                            onChange={handleInputChange}
-                                            style={{ padding: 10, marginLeft: 10, width: "300px" }}
-                                        />
-                                    </div>
-                                    <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
-                                        <label style={{ flex: "0 0 100px", textAlign: "left" }}>Link audio:</label>
-                                        <input
-                                            type="text"
-                                            name="album"
-                                            value={songData.audio}
-                                            onChange={handleInputChange}
-                                            style={{ padding: 10, marginLeft: 10, width: "300px" }}
-                                        />
-                                    </div>
-                                    <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
-                                        <label style={{ flex: "0 0 100px", textAlign: "left" }}>Link cover:</label>
-                                        <input
-                                            type="text"
-                                            name="album"
-                                            value={songData.cover}
-                                            onChange={handleInputChange}
-                                            style={{ padding: 10, marginLeft: 10, width: "300px" }}
-                                        />
+                                    <div style={{ padding: '10px 30px', display: 'flex', flexDirection: 'column'}}>
+                                        <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
+                                            <label style={{ flex: "0 0 200px", textAlign: "left" }}>Danceability (0.0 - 1.0):</label>
+                                            <input
+                                                type="text"
+                                                name="danceability"
+                                                value={songData.danceability}
+                                                onChange={handleInputChange}
+                                                style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                            />
+                                        </div>
+                                        <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
+                                            <label style={{ flex: "0 0 200px", textAlign: "left" }}>Duration (miliseconds):</label>
+                                            <input
+                                                type="text"
+                                                name="duration"
+                                                value={songData.duration}
+                                                onChange={handleInputChange}
+                                                style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                            />
+                                        </div>
+                                        <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
+                                            <label style={{ flex: "0 0 200px", textAlign: "left" }}>Energy (0.0 - 1.0):</label>
+                                            <input
+                                                type="text"
+                                                name="energy"
+                                                value={songData.energy}
+                                                onChange={handleInputChange}
+                                                style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                            />
+                                        </div>
+                                        <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
+                                            <label style={{ flex: "0 0 200px", textAlign: "left" }}>Loudness (decibel):</label>
+                                            <input
+                                                type="text"
+                                                name="loudness"
+                                                value={songData.loudness}
+                                                onChange={handleInputChange}
+                                                style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                            />
+                                        </div>
+                                        <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
+                                            <label style={{ flex: "0 0 200px", textAlign: "left" }}>Tempo (BPM):</label>
+                                            <input
+                                                type="text"
+                                                name="tempo"
+                                                value={songData.tempo}
+                                                onChange={handleInputChange}
+                                                style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                            />
+                                        </div>
+                                        <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
+                                            <label style={{ flex: "0 0 200px", textAlign: "left" }}>Valence (0.0 - 1.0):</label>
+                                            <input
+                                                type="text"
+                                                name="valence"
+                                                value={songData.valence}
+                                                onChange={handleInputChange}
+                                                style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -195,12 +324,17 @@ const SongManagement = ({ songs, setSongs }) => {
                                     alignItems: "center"
                                     }}
                                 >
+                                    <input 
+                                        type="hidden" 
+                                        name="id" 
+                                        value={songData.id} 
+                                    />
                                     <div style={{ marginBottom: 10, display: "flex", alignItems: "center" }}>
                                         <label style={{ width: "100px" }}>Song Name:</label>
                                         <input
                                             type="text"
                                             name="name"
-                                            value={songData.name || ""}
+                                            value={songData.name}
                                             onChange={handleInputChange}
                                             style={{ padding: 10, margin: 10, width: "300px" }}
                                         />
@@ -210,7 +344,7 @@ const SongManagement = ({ songs, setSongs }) => {
                                         <input
                                             type="text"
                                             name="artist"
-                                            value={songData.artist || ""}
+                                            value={songData.artist}
                                             onChange={handleInputChange}
                                             style={{ padding: 10, margin: 10, width: "300px" }}
                                         />
@@ -220,7 +354,7 @@ const SongManagement = ({ songs, setSongs }) => {
                                         <input
                                             type="text"
                                             name="genre"
-                                            value={songData.genre || ""}
+                                            value={songData.genre}
                                             onChange={handleInputChange}
                                             style={{ padding: 10, margin: 10, width: "300px" }}
                                         />
@@ -230,7 +364,7 @@ const SongManagement = ({ songs, setSongs }) => {
                                         <input
                                             type="text"
                                             name="album"
-                                            value={songData.album || ""}
+                                            value={songData.album}
                                             onChange={handleInputChange}
                                             style={{ padding: 10, margin: 10, width: "300px" }}
                                         />
