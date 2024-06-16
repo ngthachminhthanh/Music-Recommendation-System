@@ -2,6 +2,31 @@ import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from 'uuid'; 
 import { addMusic, updateMusic, deleteMusic } from "../firebaseServices";
 
+const validateSongData = (data) => {
+    if (!data.name || !data.artist || !data.genre || !data.album || !data.audio || !data.cover) {
+        return "All fields are required.";
+    }
+    if (isNaN(data.danceability) || data.danceability < 0 || data.danceability > 1) {
+        return "Danceability must be a number between 0.0 and 1.0.";
+    }
+    if (isNaN(data.duration)) {
+        return "Duration must be a number.";
+    }
+    if (isNaN(data.energy) || data.energy < 0 || data.energy > 1) {
+        return "Energy must be a number between 0.0 and 1.0.";
+    }
+    if (isNaN(data.loudness)) {
+        return "Loudness must be a number.";
+    }
+    if (isNaN(data.tempo)) {
+        return "Tempo must be a number.";
+    }
+    if (isNaN(data.valence) || data.valence < 0 || data.valence > 1) {
+        return "Valence must be a number between 0.0 and 1.0.";
+    }
+    return null;
+};
+
 const SongManagement = ({ songs, setSongs, refreshSongs }) => {
     const [mode, setMode] = useState("view");
     const [selectedSongId, setSelectedSongId] = useState(null);
@@ -95,6 +120,14 @@ const SongManagement = ({ songs, setSongs, refreshSongs }) => {
     
         if (window.confirm(confirmationMessage)) {
             try {
+                if (mode === "add" || mode === "update") {
+                    const validationError = validateSongData(songData);
+                    if (validationError) {
+                        alert(validationError);
+                        return;
+                    }
+                }
+    
                 if (mode === "add") {
                     const newSongData = {
                         ...songData,
@@ -174,6 +207,7 @@ const SongManagement = ({ songs, setSongs, refreshSongs }) => {
                                                 value={songData.name}
                                                 onChange={handleInputChange}
                                                 style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                                required
                                             />
                                         </div>
                                         <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
@@ -184,6 +218,7 @@ const SongManagement = ({ songs, setSongs, refreshSongs }) => {
                                                 value={songData.artist}
                                                 onChange={handleInputChange}
                                                 style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                                required
                                             />
                                         </div>
                                         <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
@@ -194,6 +229,7 @@ const SongManagement = ({ songs, setSongs, refreshSongs }) => {
                                                 value={songData.genre}
                                                 onChange={handleInputChange}
                                                 style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                                required
                                             />
                                         </div>
                                         <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
@@ -204,6 +240,7 @@ const SongManagement = ({ songs, setSongs, refreshSongs }) => {
                                                 value={songData.album}
                                                 onChange={handleInputChange}
                                                 style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                                required
                                             />
                                         </div>
                                         <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
@@ -214,6 +251,7 @@ const SongManagement = ({ songs, setSongs, refreshSongs }) => {
                                                 value={songData.audio}
                                                 onChange={handleInputChange}
                                                 style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                                required
                                             />
                                         </div>
                                         <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
@@ -224,6 +262,7 @@ const SongManagement = ({ songs, setSongs, refreshSongs }) => {
                                                 value={songData.cover}
                                                 onChange={handleInputChange}
                                                 style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                                required
                                             />
                                         </div>
                                     </div>
@@ -231,61 +270,70 @@ const SongManagement = ({ songs, setSongs, refreshSongs }) => {
                                         <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
                                             <label style={{ flex: "0 0 200px", textAlign: "left" }}>Danceability (0.0 - 1.0):</label>
                                             <input
-                                                type="text"
+                                                type="number"
+                                                step="0.1"
                                                 name="danceability"
                                                 value={songData.danceability}
                                                 onChange={handleInputChange}
                                                 style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                                required
                                             />
                                         </div>
                                         <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
                                             <label style={{ flex: "0 0 200px", textAlign: "left" }}>Duration (miliseconds):</label>
                                             <input
-                                                type="text"
+                                                type="number"
                                                 name="duration"
                                                 value={songData.duration}
                                                 onChange={handleInputChange}
                                                 style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                                required
                                             />
                                         </div>
                                         <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
                                             <label style={{ flex: "0 0 200px", textAlign: "left" }}>Energy (0.0 - 1.0):</label>
                                             <input
-                                                type="text"
+                                                type="number"
+                                                step="0.1"
                                                 name="energy"
                                                 value={songData.energy}
                                                 onChange={handleInputChange}
                                                 style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                                required
                                             />
                                         </div>
                                         <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
                                             <label style={{ flex: "0 0 200px", textAlign: "left" }}>Loudness (decibel):</label>
                                             <input
-                                                type="text"
+                                                type="number"
                                                 name="loudness"
                                                 value={songData.loudness}
                                                 onChange={handleInputChange}
                                                 style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                                required
                                             />
                                         </div>
                                         <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
                                             <label style={{ flex: "0 0 200px", textAlign: "left" }}>Tempo (BPM):</label>
                                             <input
-                                                type="text"
+                                                type="number"
                                                 name="tempo"
                                                 value={songData.tempo}
                                                 onChange={handleInputChange}
                                                 style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                                required
                                             />
                                         </div>
                                         <div style={{ marginBottom: 20, display: "flex", alignItems: "center" }}>
                                             <label style={{ flex: "0 0 200px", textAlign: "left" }}>Valence (0.0 - 1.0):</label>
                                             <input
-                                                type="text"
+                                                type="number"
+                                                step="0.1"
                                                 name="valence"
                                                 value={songData.valence}
                                                 onChange={handleInputChange}
                                                 style={{ padding: 10, marginLeft: 10, width: "300px" }}
+                                                required
                                             />
                                         </div>
                                     </div>
@@ -337,6 +385,7 @@ const SongManagement = ({ songs, setSongs, refreshSongs }) => {
                                             value={songData.name}
                                             onChange={handleInputChange}
                                             style={{ padding: 10, margin: 10, width: "300px" }}
+                                            required
                                         />
                                     </div>
                                     <div style={{ marginBottom: 10, display: "flex", alignItems: "center" }}>
@@ -347,6 +396,7 @@ const SongManagement = ({ songs, setSongs, refreshSongs }) => {
                                             value={songData.artist}
                                             onChange={handleInputChange}
                                             style={{ padding: 10, margin: 10, width: "300px" }}
+                                            required
                                         />
                                     </div>
                                     <div style={{ marginBottom: 10, display: "flex", alignItems: "center" }}>
@@ -357,6 +407,7 @@ const SongManagement = ({ songs, setSongs, refreshSongs }) => {
                                             value={songData.genre}
                                             onChange={handleInputChange}
                                             style={{ padding: 10, margin: 10, width: "300px" }}
+                                            required
                                         />
                                     </div>
                                     <div style={{ marginBottom: 10, display: "flex", alignItems: "center" }}>
@@ -367,6 +418,7 @@ const SongManagement = ({ songs, setSongs, refreshSongs }) => {
                                             value={songData.album}
                                             onChange={handleInputChange}
                                             style={{ padding: 10, margin: 10, width: "300px" }}
+                                            required
                                         />
                                     </div>
                                 </div>                            
