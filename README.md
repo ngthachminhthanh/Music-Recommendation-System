@@ -1,6 +1,6 @@
 # Music-Recommendation-System
 Music recommendation system support user by smart algorithm
-# Songs and cover source here: https://github.com/q113pt/MusicLibrary
+
 # How to use this repository ?
 - Fisrt, download and install Nodejs at: https://nodejs.org/en with corresponding version (if you installed it, you could skip this step)
 - Second, download and install Visual Studio Code at: https://code.visualstudio.com/download with corresponding version (if you installed it, you could skip this step)
