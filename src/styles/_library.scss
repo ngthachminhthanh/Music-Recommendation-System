@@ -3,18 +3,24 @@
     top: 0;
     left: 0;
     width: 20rem;
-    height: 100%;
+    height: 85.4%;
     background-color: var(--primary_background_color);
     box-shadow: 2px 2px 50px var(--library_box_shadow_color);
     overflow: scroll;
-    transform: translateX(-100%);
-    transition: all 0.5s ease;
-    opacity: 0;
     overflow-x: hidden;
     overflow-y: hidden;
 
     h2 {
         padding: 2rem;
+    }
+    background: linear-gradient(45deg, #2583da, transparent);
+}
+
+.b3 {
+    transition: 0.2s;
+    &:hover {
+        color: white;
+        background: black;    
     }
 }
 
@@ -23,7 +29,6 @@
     align-items: center;
     padding: 1rem 2rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
     position: relative;
 
     @media screen and (min-width: 769px) {
@@ -87,11 +92,6 @@
     &:hover {
         background-color: var(--selected_song_back_color);
     }
-}
-
-.active_library {
-    transform: translateX(0%);
-    opacity: 1;
 }
 
 * {

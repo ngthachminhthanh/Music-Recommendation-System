@@ -2,7 +2,10 @@ nav {
     min-height: 80px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 50px;
+    margin: 0 13px 0 13px;
+    background: linear-gradient(180deg, #7cb9f1 0%, #2583da 100%);
 
     button {
         background: transparent;

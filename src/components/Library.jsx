@@ -31,11 +31,36 @@ export default function Library({
 
     return (
         <div className={`library ${libraryStatus ? "active_library" : ""}`}>
-            <h2>Library</h2>
+            <h2>Danh sách bài hát </h2>
             <div style={{
                 paddingBottom: 24,
                 textAlign: "center"
             }}>
+                <div style={{
+                    paddingBottom: 18
+                }}>
+                    <button className="b3" style={{
+                        padding: 10,
+                        margin: '0 8px',
+                        borderRadius: 10,
+                        cursor: 'pointer',
+                        fontWeight: 550
+                    }}>Bài hát</button>
+                    <button className="b3" style={{
+                        padding: 10,
+                        margin: '0 8px',
+                        borderRadius: 10,
+                        cursor: 'pointer',
+                        fontWeight: 550
+                    }}>Nghệ sĩ</button>
+                    <button className="b3" style={{
+                        padding: 10,
+                        margin: '0 8px',
+                        borderRadius: 10,
+                        cursor: 'pointer',
+                        fontWeight: 550
+                    }}>Playlist</button>
+                </div>
                 <FontAwesomeIcon icon={faSearch} style={{ width: 22, height: 22 }} />
                 <input 
                     style={{
@@ -45,7 +70,7 @@ export default function Library({
                         width: "60%"
                     }}
                     type="text" 
-                    placeholder="Search songs or artists..."
+                    placeholder="Nhập tên bài hát/nghệ sĩ..."
                     value={searchTerm} 
                     onChange={handleSearchChange} 
                 />

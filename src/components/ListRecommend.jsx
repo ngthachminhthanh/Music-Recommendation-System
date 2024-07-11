@@ -154,7 +154,7 @@ const ListRecommend = ({
 
     return (
         <>
-            <h2>Recommend</h2>
+            <h2>Các bài hát gợi ý</h2>
             <div className="list_songs" style={recommendedSongs.length === 0 ? {
                 display: 'flex',
                 justifyContent: 'center',
@@ -177,9 +177,9 @@ const ListRecommend = ({
                         />
                     )) : (
                         <p style={{
-                            color: 'gray'
+                            color: '#454545'
                         }}>
-                            There are no suitable songs to recommend
+                            Không có bài hát nào phù hợp để gợi ý
                         </p>
                     )
                 }

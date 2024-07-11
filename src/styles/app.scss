@@ -59,7 +59,6 @@ h6 {
 }
 
 .App {
-    transition: all 0.5s ease;
     min-height: 100vh;
     background-color: var(--primary_background_color);
 }
@@ -128,3 +127,4 @@ h6 {
 @import "./library";
 @import "./nav";
 @import "./list";
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&display=swap');

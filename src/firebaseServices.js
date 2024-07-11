@@ -29,6 +29,17 @@ const addMusic = async (musicData) => {
     }
 };
 
+const addUser = async (userdata) => {
+    try {
+        const userCollectionRef = collection(db, 'users');
+        const docRef = await addDoc(userCollectionRef, userdata);
+        return docRef.id;
+    } catch (error) {
+        console.error('Error adding user: ', error);
+        throw error;
+    }
+};
+
 const updateMusic = async (id, data) => {
     try {
         const musicCollectionRef = collection(db, 'music');
@@ -85,4 +96,4 @@ const deleteMusic = async (id) => {
     }
 };
 
-export { getAllMusic, addMusic, updateMusic, deleteMusic };
+export { getAllMusic, addMusic, addUser, updateMusic, deleteMusic };

@@ -1,14 +1,15 @@
 .player {
-    min-height: 20vh;
+    min-height: 100px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     color: var(--player_text_color);
 }
 
 .time_control {
-    width: 50%;
+    color: white;
+    width: 122%;
     display: flex;
     align-items: center;
     input {
@@ -23,11 +24,13 @@
 }
 
 .play_control {
+    color: white;
+    width: 300px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem;
-    margin-bottom: 1rem;
+    padding-top: 12px;
+    margin-left: 88px;
     svg {
         cursor: pointer;
         box-sizing: content-box;
@@ -88,7 +91,6 @@ input[type="range"]::-moz-range-thumb {
 
 .play_volume_wrapper {
     width: 30%;
-    margin-bottom: 1rem;
 }
 
 .animate_volume {
@@ -109,7 +111,8 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .volume_control {
-    width: 100%;
+    color: white;
+    width: 120%;
     display: flex;
     justify-content: center;
 }

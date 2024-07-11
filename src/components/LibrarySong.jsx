@@ -47,7 +47,7 @@ export default function LibrarySong({
             setListQueue([...listQueue, {...song, active: false}]);
         }
         event.stopPropagation();
-        alert("Song added to List Queue!");
+        alert("Đã thêm bài hát vào hàng đợi!");
     }
 
     const removeFromQueue = (event) => {

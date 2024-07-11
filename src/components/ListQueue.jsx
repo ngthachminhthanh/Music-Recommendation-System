@@ -14,7 +14,7 @@ export default function ListQueue({
 }) {
     return (
         <>
-            <h2>Queue</h2>
+            <h2>Danh sách đợi phát</h2>
             <div className="list_songs" style={ listQueue.length == 0 ? {
                 display: 'flex',
                 justifyContent: 'center',
@@ -38,9 +38,9 @@ export default function ListQueue({
                     />
                     )) : (
                         <p style={{
-                            color: 'gray'
+                            color: '#454545'
                         }}>
-                            You haven't add any songs yet to queue
+                            Bạn chưa thêm bài hát nào vào hàng đợi
                         </p>
                     )
                 }

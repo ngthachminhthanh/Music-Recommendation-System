@@ -12,8 +12,10 @@ const Song = ({ currentSong, songInfo }) => {
                 alt={currentSong?.name}
                 style={songAnimation}
             />
-            <h2>{currentSong?.name}</h2>
-            <h3>{currentSong?.artist}</h3>
+            <div>
+                <h2>{currentSong?.name}</h2>
+                <h3>{currentSong?.artist}</h3>
+            </div>
         </div>
     );
 }

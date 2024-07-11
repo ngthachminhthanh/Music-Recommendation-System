@@ -1,10 +1,12 @@
 import { memo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMusic } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom"; 
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom"; 
+import { useState, useEffect } from "react";
+import { FaUserCircle } from "react-icons/fa";
 
 const Nav = ({
+    setShowNav,
     libraryStatus,
     setLibraryStatus,
     listStatus,
@@ -13,72 +15,74 @@ const Nav = ({
     back,
     setBack
 }) => {
+    const [user, setUser] = useState(null);
     const navigate = useNavigate();  
-    const [checkManaging, setCheckManging] = useState(false)
+
+    const handleNavigation = (path) => {
+        setShowNav(false);
+        navigate(path);
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem('user');
+        setUser(null);
+        navigate('/');
+    };
+
+    useEffect(() => {
+        const loggedInUser = localStorage.getItem('user');
+        if (loggedInUser) {
+            setUser(JSON.parse(loggedInUser));
+        }
+    }, []);
 
     return (
         <nav>
-            <h1>Waves</h1>
+            <Link to='/' style={{ textDecoration: 'none' }}>
+                <h1 style={{
+                    fontSize: 34,
+                    color: '#4501c4',
+                    fontFamily: "Playwrite CU",
+                }}>Waves</h1>
+            </Link>
 
-            { 
-                checkManaging ? null : 
-                <button
-                    onClick={() => {
-                        setLibraryStatus(!libraryStatus);
-                        setListStatus(false);
-                    }}
-                    className={libraryStatus ? "active_library_btn" : ""}
-                >
-                    Library <FontAwesomeIcon icon={faMusic} />
-                </button>
-            }
-            
-
-            <button
-                onClick={() => {
-                    if (back) {
-                        navigate("/manage");
-                    } else {
-                        navigate("/");
-                    }
-                    setCheckManging(!checkManaging);
-                    setLibraryStatus(false);
-                    setListStatus(false);
-                    setBack(!back);
-                }}
-            >
-                {
-                    back ? "Add / Update / Delete Songs " : "Back to play music! "
-                }
-                <FontAwesomeIcon icon={faMusic} />
-            </button>
-
-            {
-                checkManaging ? null : 
-                <button
-                    onClick={() => {
-                        setListStatus(!listStatus);
-                        setLibraryStatus(false);
-                    }}
-                    className={listStatus ? "active_list_btn" : ""}
-                >
-                    List <FontAwesomeIcon icon={faMusic} />
-                </button>
-            }
-
-            <div className="switch" id="switch">
-                <input
-                    type="checkbox"
-                    name="switch"
-                    className="switch-checkbox"
-                    id="myswitch"
-                    onChange={darkThemeHandler}
-                />
-                <label className="switch-label" htmlFor="myswitch">
-                    <span className="switch-inner"></span>
-                    <span className="switch-switch"></span>
-                </label>
-            </div>
+            {user ? (
+                <div style={{display: 'flex'}}>
+                    <label style={{
+                        border: 'none',
+                        color: 'black',
+                        marginTop: 10,
+                        padding: 10,
+                        display: 'flex',
+                        alignItems: 'center',
+                        paddingTop: 10
+                    }}>
+                        <FaUserCircle style={{margin: 6}}/>
+                        {user.username}
+                    </label>
+                    <button className="b3" style={{
+                        padding: 10,
+                        margin: 16
+                    }} onClick={handleLogout}>
+                        Đăng xuất
+                    </button>
+                </div>
+            ) : (
+                <div>
+                    <button className="b3" style={{
+                        border: 'none',
+                        padding: 10,
+                    }} onClick={() => handleNavigation('/login')}>
+                        Đăng nhập
+                    </button>
+                    <button className="b3" style={{
+                        padding: 10,
+                        margin: 16
+                    }} onClick={() => handleNavigation('/signup')}>
+                        Đăng ký
+                    </button>
+                </div>
+            )}
         </nav>
     );
 };

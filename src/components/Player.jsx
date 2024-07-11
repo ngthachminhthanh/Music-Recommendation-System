@@ -104,26 +104,11 @@ const Player = ({
 
     return (
         <div className="player">
-            <div className="time_control">
-                <p>{getTime(songInfo.currentTime)}</p>
-                <div
-                    style={{
-                        background: `linear-gradient(to right, ${currentSong?.color[0]}, ${currentSong?.color[1]})`,
-                    }}
-                    className="track"
-                >
-                    <input
-                        min={0}
-                        max={songInfo.duration || 0}
-                        value={songInfo.currentTime}
-                        onChange={dragHandler}
-                        type="range"
-                    />
-                    <div style={trackAnim} className="animate_track"></div>
-                </div>
-                <p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
-            </div>
-            <div className="play_volume_wrapper">
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                paddingRight: 300
+            }}>
                 <div className="play_control">
                     <FontAwesomeIcon
                         onClick={() => skipTrackHandler("backward")}
@@ -144,6 +129,27 @@ const Player = ({
                         icon={faAngleRight}
                     />
                 </div>
+                <div className="time_control">
+                    <p>{getTime(songInfo.currentTime)}</p>
+                    <div
+                        style={{
+                            background: `linear-gradient(to right, ${currentSong?.color[0]}, ${currentSong?.color[1]})`,
+                        }}
+                        className="track"
+                    >
+                        <input
+                            min={0}
+                            max={songInfo.duration || 0}
+                            value={songInfo.currentTime}
+                            onChange={dragHandler}
+                            type="range"
+                        />
+                        <div style={trackAnim} className="animate_track"></div>
+                    </div>
+                    <p>{songInfo.duration ? getTime(songInfo.duration) : "0:00"}</p>
+                </div>
+            </div>
+            <div className="play_volume_wrapper">
                 <div className="volume_control">
                     <div
                         className="track_volume"

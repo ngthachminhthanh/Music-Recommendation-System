@@ -6,6 +6,9 @@ import Player from "./components/Player";
 import Library from "./components/Library";
 import List from "./components/List";
 import Nav from "./components/Nav";
+import Login from "./components/Login";
+import Signup from "./components/SignUp";
+import MainContent from "./components/MainContent";
 import SongManagement from "./components/SongManagement"; 
 import { getAllMusic } from "./firebaseServices";
 
@@ -25,11 +28,8 @@ function App({ initialSongs }) {
     const [currentSong, setCurrentSong] = useState(songs[0]);
     const [isPlaying, setIsPlaying] = useState(false);
 
-    const width = window.innerWidth;    
-    const notPhone = width > 720 ? true: false;
-
-    const [libraryStatus, setLibraryStatus] = useState(notPhone);
-    const [listStatus, setListStatus] = useState(false);
+    const [libraryStatus, setLibraryStatus] = useState(true);
+    const [listStatus, setListStatus] = useState(true);
     const [listQueue, setListQueue] = useState([]);
     const [listRecommend, setListRecommend] = useState([]);
     const [songInfo, setSongInfo] = useState({
@@ -91,15 +91,18 @@ function App({ initialSongs }) {
         setDarkTheme(!darkTheme);
     };
 
+    const [showNav, setShowNav] = useState(true);
+
     return (
         <Router>
             <div
                 className={`App 
-                    ${libraryStatus ? "library_active" : ""} 
+                    ${showNav ? "library_active" : ""} 
                     ${darkTheme ? "dark" : ""}
-                    ${listStatus ? "list_active" : ""}`}
+                    ${showNav ? "list_active" : ""}`}
             >
-                <Nav
+                { showNav && 
+                    <Nav
                     libraryStatus={libraryStatus}
                     setLibraryStatus={setLibraryStatus}
                     listStatus={listStatus}
@@ -109,22 +112,36 @@ function App({ initialSongs }) {
                     darkThemeHandler={darkThemeHandler}
                     back={back}
                     setBack={setBack}
-                />
+                    setShowNav={setShowNav}
+                    />
+                }
+                    
                 <Routes>
                     <Route path="/" element={ back ? 
                         <>
-                            <Song currentSong={currentSong} songInfo={songInfo} />
-                            <Player
-                                isPlaying={isPlaying}
-                                setIsPlaying={setIsPlaying}
-                                currentSong={currentSong}
-                                audioRef={audioRef}
-                                songInfo={songInfo}
-                                setSongInfo={setSongInfo}
-                                songs={songs}
-                                setCurrentSong={setCurrentSong}
-                                setSongs={setSongs}
-                            />
+                            <div style={{
+                                position: 'fixed',
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                display: 'flex',
+                                justifyContent: 'space-evenly',
+                                background: 'black',
+                                width: '100%',
+                            }}>
+                                <Song currentSong={currentSong} songInfo={songInfo} />
+                                <Player
+                                    isPlaying={isPlaying}
+                                    setIsPlaying={setIsPlaying}
+                                    currentSong={currentSong}
+                                    audioRef={audioRef}
+                                    songInfo={songInfo}
+                                    setSongInfo={setSongInfo}
+                                    songs={songs}
+                                    setCurrentSong={setCurrentSong}
+                                    setSongs={setSongs}
+                                />
+                            </div>
                             <Library
                                 libraryStatus={libraryStatus}
                                 isPlaying={isPlaying}
@@ -136,6 +153,7 @@ function App({ initialSongs }) {
                                 setListQueue={setListQueue}
                                 typeOfButton={"faPlus"}
                             />
+                            <MainContent />
                             <List
                                 listStatus={listStatus}
                                 isPlaying={isPlaying}
@@ -159,14 +177,16 @@ function App({ initialSongs }) {
                             ></audio>
                         </> : <></>
                     } />
-                    <Route path="/manage" element={ 
+                    {/* <Route path="/manage" element={ 
                         back ? 
                         <></> : 
                         <SongManagement 
                             songs={songs} 
                             setSongs={setSongs} 
                             refreshSongs={refreshSongs} />} 
-                        />
+                    /> */}
+                    <Route path="/login" element={<Login setShowNav={setShowNav} />} />
+                    <Route path="/signup" element={<Signup setShowNav={setShowNav} />} />
                 </Routes>
             </div>
         </Router>
