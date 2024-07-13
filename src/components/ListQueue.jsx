@@ -16,7 +16,9 @@ export default function ListQueue({
     setListQueue,
     listRecommend,
     setListRecommend,
-    user
+    user,
+    playList,
+    setPlayList
 }) {
     const [showModal, setShowModal] = useState(false);
 
@@ -59,6 +61,8 @@ export default function ListQueue({
             await updateDoc(userDoc.ref, {
                 playlists: arrayUnion(newPlaylist)
             });
+
+            setPlayList(prevPlayList => [...prevPlayList, newPlaylist]);
 
             alert('Playlist đã được lưu thành công!');
         } catch (error) {

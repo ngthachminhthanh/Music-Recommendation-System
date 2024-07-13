@@ -15,7 +15,9 @@ export default function Library({
     listQueue,
     setListQueue,
     typeOfButton,
-    user
+    user,
+    playList,
+    setPlayList
 }) {
     const [searchTerm, setSearchTerm] = useState("");
     const [activeButton, setActiveButton] = useState("Bài hát");
@@ -29,7 +31,7 @@ export default function Library({
         }, new Map()).values()
     );
 
-    const [playList, setPlayList] = useState([]);
+    
     useEffect(() => {
         const fetchPlaylists = async () => {
             if (user && user.username) {

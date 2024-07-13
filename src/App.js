@@ -93,6 +93,7 @@ function App({ initialSongs }) {
 
     const [showNav, setShowNav] = useState(true);
     const [user, setUser] = useState(null);
+    const [playList, setPlayList] = useState([]);
 
     return (
         <Router>
@@ -156,6 +157,8 @@ function App({ initialSongs }) {
                                 setListQueue={setListQueue}
                                 typeOfButton={"faPlus"}
                                 user={user}
+                                playList={playList}
+                                setPlayList={setPlayList}
                             />
                             <MainContent />
                             <List
@@ -172,6 +175,8 @@ function App({ initialSongs }) {
                                 setListRecommend={setListRecommend}
                                 typeOfButton={"faPlus"}
                                 user={user}
+                                playList={playList}
+                                setPlayList={setPlayList}
                             />
                             <audio
                                 onTimeUpdate={timeUpdateHandler}
