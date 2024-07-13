@@ -14,6 +14,7 @@ export default function List({
     listRecommend,
     setListRecommend,
     typeOfButton,
+    user
 }) {
     return (
         <div className={`list ${listStatus ? "active_list" : ""}`}>
@@ -28,6 +29,7 @@ export default function List({
                 setListQueue={setListQueue}
                 listRecommend={listRecommend}
                 setListRecommend={setListRecommend}
+                user={user}
             />
             <ListRecommend
                 songs={songs}

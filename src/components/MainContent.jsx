@@ -25,7 +25,8 @@ export default function MainContent() {
                         <img src="https://i.pinimg.com/736x/e2/0f/c5/e20fc519cd632d6eb8dcd3ddc3a9767d.jpg" alt="" style={{
                             width: 140,
                             height: 140,
-                            borderRadius: '50%',    
+                            borderRadius: '50%',  
+                            border: 'solid #333'  
                         }}/>
                         <h3>Name some shit</h3>
                         <h4>Nghệ sĩ</h4>

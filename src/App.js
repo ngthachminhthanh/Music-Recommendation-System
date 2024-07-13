@@ -14,7 +14,7 @@ import { getAllMusic } from "./firebaseServices";
 
 function App({ initialSongs }) {
     const [songs, setSongs] = useState(initialSongs);
-
+    
     const refreshSongs = useCallback(async () => {
         try {
             const updatedSongs = await getAllMusic();
@@ -92,6 +92,7 @@ function App({ initialSongs }) {
     };
 
     const [showNav, setShowNav] = useState(true);
+    const [user, setUser] = useState(null);
 
     return (
         <Router>
@@ -103,16 +104,18 @@ function App({ initialSongs }) {
             >
                 { showNav && 
                     <Nav
-                    libraryStatus={libraryStatus}
-                    setLibraryStatus={setLibraryStatus}
-                    listStatus={listStatus}
-                    setListStatus={setListStatus}
-                    darkTheme={darkTheme}
-                    setDarkTheme={setDarkTheme}
-                    darkThemeHandler={darkThemeHandler}
-                    back={back}
-                    setBack={setBack}
-                    setShowNav={setShowNav}
+                        libraryStatus={libraryStatus}
+                        setLibraryStatus={setLibraryStatus}
+                        listStatus={listStatus}
+                        setListStatus={setListStatus}
+                        darkTheme={darkTheme}
+                        setDarkTheme={setDarkTheme}
+                        darkThemeHandler={darkThemeHandler}
+                        back={back}
+                        setBack={setBack}
+                        setShowNav={setShowNav}
+                        user={user}
+                        setUser={setUser}
                     />
                 }
                     
@@ -152,6 +155,7 @@ function App({ initialSongs }) {
                                 listQueue={listQueue}
                                 setListQueue={setListQueue}
                                 typeOfButton={"faPlus"}
+                                user={user}
                             />
                             <MainContent />
                             <List
@@ -167,6 +171,7 @@ function App({ initialSongs }) {
                                 listRecommend={listRecommend}
                                 setListRecommend={setListRecommend}
                                 typeOfButton={"faPlus"}
+                                user={user}
                             />
                             <audio
                                 onTimeUpdate={timeUpdateHandler}
@@ -177,14 +182,6 @@ function App({ initialSongs }) {
                             ></audio>
                         </> : <></>
                     } />
-                    {/* <Route path="/manage" element={ 
-                        back ? 
-                        <></> : 
-                        <SongManagement 
-                            songs={songs} 
-                            setSongs={setSongs} 
-                            refreshSongs={refreshSongs} />} 
-                    /> */}
                     <Route path="/login" element={<Login setShowNav={setShowNav} />} />
                     <Route path="/signup" element={<Signup setShowNav={setShowNav} />} />
                 </Routes>

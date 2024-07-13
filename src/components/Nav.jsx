@@ -13,9 +13,11 @@ const Nav = ({
     setListStatus,
     darkThemeHandler,
     back,
-    setBack
+    setBack,
+    user,
+    setUser
 }) => {
-    const [user, setUser] = useState(null);
+    
     const navigate = useNavigate();  
 
     const handleNavigation = (path) => {
