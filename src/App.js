@@ -1,4 +1,4 @@
-﻿import { useState, useCallback, useRef } from "react";
+﻿import { useState, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./styles/app.scss";
 import Song from "./components/Song";
@@ -34,7 +34,6 @@ function App({ initialSongs }) {
     const [user, setUser] = useState(null);
     const [playList, setPlayList] = useState([]);
     const [selectedArtist, setSelectedArtist] = useState(null);
-    const [activeView, setActiveView] = useState("Bài hát");
 
     const timeUpdateHandler = (e) => {
         const currentTime = e.target.currentTime;
@@ -166,7 +165,7 @@ function App({ initialSongs }) {
                                         typeOfButton={"faPlus"}
                                     />
                                 ) : (
-                                    <MainContent user={user} songs={songs} />
+                                    <MainContent user={user} songs={songs} setCurrentSong={setCurrentSong} audioRef={audioRef} isPlaying={isPlaying} listQueue={listQueue} setListQueue={setListQueue} />
                                 )}
                                 <List
                                     listStatus={listStatus}
