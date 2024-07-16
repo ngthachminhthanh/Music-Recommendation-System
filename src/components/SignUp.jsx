@@ -71,7 +71,7 @@ const SignUp = ({ setShowNav }) => {
             }}>
                 <div style={{
                     maxWidth: 450,
-                    height: 500,
+                    height: 450,
                     marginLeft: 'auto',
                     marginRight: 'auto',
                     backgroundColor: 'rgb(0 0 0 / 0.75)',
@@ -136,17 +136,8 @@ const SignUp = ({ setShowNav }) => {
                                 cursor: 'pointer'
                             }}>Đăng kí</button>
                         </form>
-                        <div style={{
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                            fontSize: '0.875rem',
-                            color: '#4B5563'
-                        }}>
-                            <p><input style={{marginRight: '0.5rem'}} type='checkbox'/>Hãy nhớ tôi</p>
-                            <p>Cần giúp đỡ?</p>
-                        </div>
-                        <p style={{padding: '32px 0'}}>
+
+                        <p>
                             <span style={{color: '#4B5563'}}>
                             Đã có tài khoản ?
                             </span>{' '}

@@ -17,7 +17,8 @@ export default function Library({
     typeOfButton,
     user,
     playList,
-    setPlayList
+    setPlayList,
+    setSelectedArtist,
 }) {
     const [searchTerm, setSearchTerm] = useState("");
     const [activeButton, setActiveButton] = useState("Bài hát");
@@ -75,6 +76,18 @@ export default function Library({
             return songName.includes(search) || songArtist.includes(search);
           })
         : songs; 
+    
+    const filterArtists = (artists, searchTerm) => {
+        return artists.filter((artist) => {
+            return artist.artist.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+};
+
+    const filterPlaylists = (playlists, searchTerm) => {
+        return playlists.filter((playlist) => {
+            return playlist.playlistName.toLowerCase().includes(searchTerm.toLowerCase());
+        });
+    };
 
     const buttonStyle = (buttonName) => ({
         padding: 10,
@@ -144,14 +157,19 @@ export default function Library({
                         isPlaying={isPlaying}
                         audioRef={audioRef}
                         listQueue={listQueue}
-                        setListQueue={setListQueue}
+                        setListQueue={setListQueue} 
                         typeOfButton={typeOfButton}
                     />
                 ))}
-                {activeButton === "Nghệ sĩ" && uniqueArtists.map((artist, index) => (
-                    <div key={index} style={{ display: 'flex', alignItems: 'center', margin: '12px 30px' }}>
+                {activeButton === "Nghệ sĩ" && filterArtists(uniqueArtists, searchTerm).map((artist, index) => (
+                    <div 
+                        key={index} 
+                        className="library-item" 
+                        style={{ display: 'flex', alignItems: 'center', padding: '12px 30px', cursor: 'pointer'}}
+                        onClick={() => setSelectedArtist(artist)}
+                    >
                         <img 
-                            src={artist.cover} 
+                            src={artist.cover}
                             alt={artist.artist} 
                             style={{ width: '74px', height: '74px', marginRight: '12px', borderRadius: 6, border: 'solid #333' }}
                         />
@@ -159,9 +177,9 @@ export default function Library({
                     </div>
                 ))}
                 {activeButton === "Playlist" && (
-                    playList.length > 0 ? (
-                        playList.map((playlist, index) => (
-                            <div key={index} style={{ display: 'flex', alignItems: 'center', margin: '12px 30px' }}>
+                    filterPlaylists(playList, searchTerm).length > 0 ? (
+                        filterPlaylists(playList, searchTerm).map((playlist, index) => (
+                            <div key={index} className="library-item" style={{ display: 'flex', alignItems: 'center', padding: '12px 30px', cursor: 'pointer' }}>
                                 <img 
                                     src={"https://accucut.com/cdn/shop/products/ZM1650.jpg?v=1575932437"} 
                                     style={{ width: '74px', height: '74px', marginRight: '12px', borderRadius: 6, border: 'solid #333' }}
@@ -172,7 +190,7 @@ export default function Library({
                     ) : (
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70%', flexDirection: 'column' }}>
                             <p>Hiện không có Playlist nào...</p>
-                            <p>Hãy đăng nhập và tạo Playlist cho riêng bạn!</p>
+                            <p>Hãy đăng nhập và tạo Playlist cho bạn!</p>
                         </div>
                     )
                 )}

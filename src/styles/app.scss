@@ -122,6 +122,26 @@ h6 {
     }
 }
 
+.iconAddToQueueFromAboutArtist {
+    padding: 8px;
+    border-radius: 50%;
+    background-color: green;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    margin-right: 30px;
+
+    &:hover {
+        background-color: #65b9e6;
+    }
+}
+
+.bgHover {
+    &:hover {
+        background-color: rgba(204, 196, 196, 0.5); 
+    }
+}
+
 @import "./player";
 @import "./song";
 @import "./library";

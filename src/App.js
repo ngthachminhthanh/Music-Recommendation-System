@@ -9,6 +9,8 @@ import Nav from "./components/Nav";
 import Login from "./components/Login";
 import Signup from "./components/SignUp";
 import MainContent from "./components/MainContent";
+import AboutArtist from "./components/AboutArtist"
+import AboutPlaylist from "./components/AboutPlaylist";
 import SongManagement from "./components/SongManagement"; 
 import { getAllMusic } from "./firebaseServices";
 
@@ -94,6 +96,8 @@ function App({ initialSongs }) {
     const [showNav, setShowNav] = useState(true);
     const [user, setUser] = useState(null);
     const [playList, setPlayList] = useState([]);
+    const [selectedArtist, setSelectedArtist] = useState(null);
+    const [activeView, setActiveView] = useState("Bài hát");
 
     return (
         <Router>
@@ -121,7 +125,7 @@ function App({ initialSongs }) {
                 }
                     
                 <Routes>
-                    <Route path="/" element={ back ? 
+                    <Route path="/" element={
                         <>
                             <div style={{
                                 position: 'fixed',
@@ -159,8 +163,23 @@ function App({ initialSongs }) {
                                 user={user}
                                 playList={playList}
                                 setPlayList={setPlayList}
+                                setSelectedArtist={setSelectedArtist}
                             />
-                            <MainContent />
+                            {selectedArtist ? (
+                                <AboutArtist
+                                    artist={selectedArtist}
+                                    songs={songs}
+                                    setCurrentSong={setCurrentSong}
+                                    isPlaying={isPlaying}
+                                    audioRef={audioRef}
+                                    setSongs={setSongs}
+                                    listQueue={listQueue}
+                                    setListQueue={setListQueue}
+                                    typeOfButton={"faPlus"}
+                                />
+                            ) : (
+                                <MainContent />
+                            )}
                             <List
                                 listStatus={listStatus}
                                 isPlaying={isPlaying}
@@ -185,7 +204,7 @@ function App({ initialSongs }) {
                                 src={currentSong?.audio}
                                 onEnded={songEndHandler}
                             ></audio>
-                        </> : <></>
+                        </>
                     } />
                     <Route path="/login" element={<Login setShowNav={setShowNav} />} />
                     <Route path="/signup" element={<Signup setShowNav={setShowNav} />} />
