@@ -1,5 +1,5 @@
-import { useState, useCallback, useRef } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
+﻿import { useState, useCallback, useRef } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./styles/app.scss";
 import Song from "./components/Song";
 import Player from "./components/Player";
@@ -9,12 +9,12 @@ import Nav from "./components/Nav";
 import Login from "./components/Login";
 import Signup from "./components/SignUp";
 import MainContent from "./components/MainContent";
-import SongManagement from "./components/SongManagement"; 
+import SongManagement from "./components/SongManagement";
 import { getAllMusic } from "./firebaseServices";
 
 function App({ initialSongs }) {
     const [songs, setSongs] = useState(initialSongs);
-    
+
     const refreshSongs = useCallback(async () => {
         try {
             const updatedSongs = await getAllMusic();
@@ -39,7 +39,7 @@ function App({ initialSongs }) {
     });
     const [darkTheme, setDarkTheme] = useState(false);
     const audioRef = useRef(null);
-    const [ back, setBack ] = useState(true);
+    const [back, setBack] = useState(true);
 
     const timeUpdateHandler = (e) => {
         const currentTime = e.target.currentTime;
@@ -103,7 +103,7 @@ function App({ initialSongs }) {
                     ${darkTheme ? "dark" : ""}
                     ${showNav ? "list_active" : ""}`}
             >
-                { showNav && 
+                {showNav &&
                     <Nav
                         libraryStatus={libraryStatus}
                         setLibraryStatus={setLibraryStatus}
@@ -119,9 +119,9 @@ function App({ initialSongs }) {
                         setUser={setUser}
                     />
                 }
-                    
+
                 <Routes>
-                    <Route path="/" element={ back ? 
+                    <Route path="/" element={back ?
                         <>
                             <div style={{
                                 position: 'fixed',
@@ -160,7 +160,7 @@ function App({ initialSongs }) {
                                 playList={playList}
                                 setPlayList={setPlayList}
                             />
-                            <MainContent />
+                            <MainContent user={user} songs={songs} />
                             <List
                                 listStatus={listStatus}
                                 isPlaying={isPlaying}
