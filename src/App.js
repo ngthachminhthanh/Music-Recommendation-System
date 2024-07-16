@@ -160,7 +160,7 @@ function App({ initialSongs }) {
                                 playList={playList}
                                 setPlayList={setPlayList}
                             />
-                            <MainContent user={user} songs={songs} />
+                            <MainContent />
                             <List
                                 listStatus={listStatus}
                                 isPlaying={isPlaying}
