@@ -34,6 +34,14 @@
     }
 }
 
+.library-item {
+    @media screen and (min-width: 769px) {
+        &:hover {
+            background-color: var(--library_back_color_hover);
+        }
+    }
+}
+
 .list_songs {
     height: 37%;
     max-height: 37%;
