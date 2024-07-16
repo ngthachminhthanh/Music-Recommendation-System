@@ -1,4 +1,4 @@
-﻿import { useState, useCallback, useRef } from "react";
+﻿import { useState, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./styles/app.scss";
 import Song from "./components/Song";
@@ -16,20 +16,8 @@ import { getAllMusic } from "./firebaseServices";
 
 function App({ initialSongs }) {
     const [songs, setSongs] = useState(initialSongs);
-
-    const refreshSongs = useCallback(async () => {
-        try {
-            const updatedSongs = await getAllMusic();
-            setSongs(updatedSongs);
-        } catch (error) {
-            console.error("Error refreshing songs: ", error);
-            alert("An error occurred while refreshing songs. Please try again.");
-        }
-    }, [setSongs]);
-
     const [currentSong, setCurrentSong] = useState(songs[0]);
     const [isPlaying, setIsPlaying] = useState(false);
-
     const [libraryStatus, setLibraryStatus] = useState(true);
     const [listStatus, setListStatus] = useState(true);
     const [listQueue, setListQueue] = useState([]);
@@ -42,6 +30,10 @@ function App({ initialSongs }) {
     const [darkTheme, setDarkTheme] = useState(false);
     const audioRef = useRef(null);
     const [back, setBack] = useState(true);
+    const [showNav, setShowNav] = useState(true);
+    const [user, setUser] = useState(null);
+    const [playList, setPlayList] = useState([]);
+    const [selectedArtist, setSelectedArtist] = useState(null);
 
     const timeUpdateHandler = (e) => {
         const currentTime = e.target.currentTime;
@@ -93,18 +85,12 @@ function App({ initialSongs }) {
         setDarkTheme(!darkTheme);
     };
 
-    const [showNav, setShowNav] = useState(true);
-    const [user, setUser] = useState(null);
-    const [playList, setPlayList] = useState([]);
-    const [selectedArtist, setSelectedArtist] = useState(null);
-    const [activeView, setActiveView] = useState("Bài hát");
-
     return (
         <Router>
             <div
                 className={`App 
                     ${showNav ? "library_active" : ""} 
-                    ${darkTheme ? "dark" : ""}
+                    ${darkTheme ? "dark" : ""} 
                     ${showNav ? "list_active" : ""}`}
             >
                 {showNav &&
@@ -179,7 +165,7 @@ function App({ initialSongs }) {
                                         typeOfButton={"faPlus"}
                                     />
                                 ) : (
-                                    <MainContent user={user} songs={songs} />
+                                    <MainContent user={user} songs={songs} setCurrentSong={setCurrentSong} audioRef={audioRef} isPlaying={isPlaying} listQueue={listQueue} setListQueue={setListQueue} />
                                 )}
                                 <List
                                     listStatus={listStatus}

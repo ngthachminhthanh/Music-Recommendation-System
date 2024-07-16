@@ -35,9 +35,9 @@ const AboutArtist = ({ artist, songs, setCurrentSong, isPlaying, audioRef, setSo
                 <div style={{ display: 'flex', alignItems: 'flex-end', marginBottom: '30px' }}>
                     <img src={artist.cover} alt={artist.artist} style={{ width: '180px', height: '180px', marginRight: '20px' }} />
                     <div>
-                        <h4 style={{ margin: '0', fontSize: '16px', color: 'white' }}>Album</h4>
+                        <h4 style={{ margin: '0', fontSize: '16px', color: 'white' }}>NGHỆ SĨ</h4>
                         <h1 style={{ margin: '10px 0', fontSize: '72px', fontWeight: 'bold', color: 'white' }}>{artist.artist}</h1>
-                        <p style={{ margin: '0', fontSize: '14px' }}>{artist.artist} • {artistSongs.length} bài hát • Tổng thời lượng: {Math.floor(artistSongs.reduce((acc, song) => acc + song.duration, 0) / 60)} phút {artistSongs.reduce((acc, song) => acc + song.duration, 0) % 60} giây</p>
+                        <p style={{ margin: '0', fontSize: '14px' }}> {artistSongs.length} Bài hát • Tổng thời lượng: {Math.floor(artistSongs.reduce((acc, song) => acc + song.duration, 0) / 60)} phút {artistSongs.reduce((acc, song) => acc + song.duration, 0) % 60} giây</p>
                     </div>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>

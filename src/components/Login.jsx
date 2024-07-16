@@ -17,28 +17,30 @@ const Login = ({ setShowNav }) => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        setError(''); 
-    
+        setError('');
+
         try {
             const q = query(collection(db, "users"), where("username", "==", username));
             const querySnapshot = await getDocs(q);
-        
+
             if (querySnapshot.empty) {
                 setError('Tên đăng nhập không tồn tại');
                 return;
             }
 
             let isAuthenticated = false;
+            let userData;
             querySnapshot.forEach((doc) => {
-                const userData = doc.data();
+                userData = doc.data();
                 if (userData.password === password) {
                     isAuthenticated = true;
                     localStorage.setItem('user', JSON.stringify({
+                        uid: doc.id,
                         username: userData.username,
                     }));
                 }
             });
-        
+
             if (isAuthenticated) {
                 navigate('/')
             } else {
@@ -49,6 +51,7 @@ const Login = ({ setShowNav }) => {
             setError('Đã xảy ra lỗi khi đăng nhập. Vui lòng thử lại.');
         }
     };
+
 
     return (
     <>
