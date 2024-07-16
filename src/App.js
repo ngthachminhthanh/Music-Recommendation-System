@@ -9,6 +9,8 @@ import Nav from "./components/Nav";
 import Login from "./components/Login";
 import Signup from "./components/SignUp";
 import MainContent from "./components/MainContent";
+import AboutArtist from "./components/AboutArtist";
+import AboutPlaylist from "./components/AboutPlaylist";
 import SongManagement from "./components/SongManagement";
 import { getAllMusic } from "./firebaseServices";
 
@@ -94,6 +96,8 @@ function App({ initialSongs }) {
     const [showNav, setShowNav] = useState(true);
     const [user, setUser] = useState(null);
     const [playList, setPlayList] = useState([]);
+    const [selectedArtist, setSelectedArtist] = useState(null);
+    const [activeView, setActiveView] = useState("Bài hát");
 
     return (
         <Router>
@@ -121,71 +125,87 @@ function App({ initialSongs }) {
                 }
 
                 <Routes>
-                    <Route path="/" element={back ?
-                        <>
-                            <div style={{
-                                position: 'fixed',
-                                bottom: 0,
-                                left: 0,
-                                right: 0,
-                                display: 'flex',
-                                justifyContent: 'space-evenly',
-                                background: 'black',
-                                width: '100%',
-                            }}>
-                                <Song currentSong={currentSong} songInfo={songInfo} />
-                                <Player
+                    <Route path="/" element={
+                        back ?
+                            <>
+                                <div style={{
+                                    position: 'fixed',
+                                    bottom: 0,
+                                    left: 0,
+                                    right: 0,
+                                    display: 'flex',
+                                    justifyContent: 'space-evenly',
+                                    background: 'black',
+                                    width: '100%',
+                                }}>
+                                    <Song currentSong={currentSong} songInfo={songInfo} />
+                                    <Player
+                                        isPlaying={isPlaying}
+                                        setIsPlaying={setIsPlaying}
+                                        currentSong={currentSong}
+                                        audioRef={audioRef}
+                                        songInfo={songInfo}
+                                        setSongInfo={setSongInfo}
+                                        songs={songs}
+                                        setCurrentSong={setCurrentSong}
+                                        setSongs={setSongs}
+                                    />
+                                </div>
+                                <Library
+                                    libraryStatus={libraryStatus}
                                     isPlaying={isPlaying}
-                                    setIsPlaying={setIsPlaying}
-                                    currentSong={currentSong}
-                                    audioRef={audioRef}
-                                    songInfo={songInfo}
-                                    setSongInfo={setSongInfo}
-                                    songs={songs}
                                     setCurrentSong={setCurrentSong}
+                                    audioRef={audioRef}
+                                    songs={songs}
                                     setSongs={setSongs}
+                                    listQueue={listQueue}
+                                    setListQueue={setListQueue}
+                                    typeOfButton={"faPlus"}
+                                    user={user}
+                                    playList={playList}
+                                    setPlayList={setPlayList}
+                                    setSelectedArtist={setSelectedArtist}
                                 />
-                            </div>
-                            <Library
-                                libraryStatus={libraryStatus}
-                                isPlaying={isPlaying}
-                                setCurrentSong={setCurrentSong}
-                                audioRef={audioRef}
-                                songs={songs}
-                                setSongs={setSongs}
-                                listQueue={listQueue}
-                                setListQueue={setListQueue}
-                                typeOfButton={"faPlus"}
-                                user={user}
-                                playList={playList}
-                                setPlayList={setPlayList}
-                            />
-                            <MainContent />
-                            <List
-                                listStatus={listStatus}
-                                isPlaying={isPlaying}
-                                currentSong={currentSong}
-                                setCurrentSong={setCurrentSong}
-                                audioRef={audioRef}
-                                songs={songs}
-                                setSongs={setSongs}
-                                listQueue={listQueue}
-                                setListQueue={setListQueue}
-                                listRecommend={listRecommend}
-                                setListRecommend={setListRecommend}
-                                typeOfButton={"faPlus"}
-                                user={user}
-                                playList={playList}
-                                setPlayList={setPlayList}
-                            />
-                            <audio
-                                onTimeUpdate={timeUpdateHandler}
-                                onLoadedMetadata={timeUpdateHandler}
-                                ref={audioRef}
-                                src={currentSong?.audio}
-                                onEnded={songEndHandler}
-                            ></audio>
-                        </> : <></>
+                                {selectedArtist ? (
+                                    <AboutArtist
+                                        artist={selectedArtist}
+                                        songs={songs}
+                                        setCurrentSong={setCurrentSong}
+                                        isPlaying={isPlaying}
+                                        audioRef={audioRef}
+                                        setSongs={setSongs}
+                                        listQueue={listQueue}
+                                        setListQueue={setListQueue}
+                                        typeOfButton={"faPlus"}
+                                    />
+                                ) : (
+                                    <MainContent user={user} songs={songs} />
+                                )}
+                                <List
+                                    listStatus={listStatus}
+                                    isPlaying={isPlaying}
+                                    currentSong={currentSong}
+                                    setCurrentSong={setCurrentSong}
+                                    audioRef={audioRef}
+                                    songs={songs}
+                                    setSongs={setSongs}
+                                    listQueue={listQueue}
+                                    setListQueue={setListQueue}
+                                    listRecommend={listRecommend}
+                                    setListRecommend={setListRecommend}
+                                    typeOfButton={"faPlus"}
+                                    user={user}
+                                    playList={playList}
+                                    setPlayList={setPlayList}
+                                />
+                                <audio
+                                    onTimeUpdate={timeUpdateHandler}
+                                    onLoadedMetadata={timeUpdateHandler}
+                                    ref={audioRef}
+                                    src={currentSong?.audio}
+                                    onEnded={songEndHandler}
+                                ></audio>
+                            </> : <></>
                     } />
                     <Route path="/login" element={<Login setShowNav={setShowNav} />} />
                     <Route path="/signup" element={<Signup setShowNav={setShowNav} />} />

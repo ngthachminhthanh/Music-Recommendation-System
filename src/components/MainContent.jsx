@@ -27,7 +27,7 @@ export default function MainContent({ user, songs }) {
                 height: '74.3vh',
                 paddingLeft: 90,
                 marginLeft: '12.75px',
-                background: 'linear-gradient(180deg, #2583da 0%, #1e6cb7 100%)',
+                background: 'linear-gradient(rgb(100 213 169) 0%, #65b9e6 100%)',
                 overflow: 'scroll',
                 overflowX: 'hidden',
             }}>
